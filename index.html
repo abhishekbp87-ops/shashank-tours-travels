@@ -253,10 +253,13 @@
         <!-- 6. Customer Reviews Direct Link -->
         <a href="#reviews" class="nav-item-link" data-nav="reviews">Reviews</a>
 
-        <!-- 7. About Us Direct Link -->
+        <!-- 7. Pay Online Direct Link -->
+        <a href="#payment" class="nav-item-link" data-nav="payment">Pay Online</a>
+
+        <!-- 8. About Us Direct Link -->
         <a href="#why-us" class="nav-item-link" data-nav="why-us">About Us</a>
 
-        <!-- 8. Contact Direct Link -->
+        <!-- 9. Contact Direct Link -->
         <a href="#contact" class="nav-item-link" data-nav="contact">Contact</a>
       </nav>
 
@@ -383,6 +386,7 @@
       </div>
 
       <a href="#reviews" class="mobile-nav-link" data-mobile-nav="reviews">Customer Reviews</a>
+      <a href="#payment" class="mobile-nav-link" data-mobile-nav="payment">Pay Online (UPI)</a>
       <a href="#how-it-works" class="mobile-nav-link" data-mobile-nav="how-it-works">How It Works</a>
       <a href="#why-us" class="mobile-nav-link" data-mobile-nav="why-us">About Us</a>
       <a href="#contact" class="mobile-nav-link" data-mobile-nav="contact">Contact</a>
@@ -1084,6 +1088,107 @@
   </section>
 
   <!-- ==========================================================================
+       OFFICIAL UPI PAYMENT & QR SECTION
+       ========================================================================== -->
+  <section class="section section-soft-blue reveal-on-scroll" id="payment">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Official UPI Payment</span>
+        <h2 class="section-title">Fast &amp; Direct UPI Payments</h2>
+        <p class="section-desc">
+          Pay easily via Google Pay, PhonePe, Paytm, BHIM, or any UPI app.
+          Click below to pay on mobile or scan our verified QR code from your computer. Zero convenience charges.
+        </p>
+      </div>
+
+      <div class="payment-section-grid">
+        <!-- Left Column: Verified Merchant Information & Direct Pay CTA -->
+        <div class="payment-info-card">
+          <div class="payment-merchant-badge">
+            <span class="verified-dot" aria-hidden="true"></span>
+            <span>Verified PhonePe Merchant • Kotak Mahindra Bank</span>
+          </div>
+
+          <h3 class="payment-card-title">Shashank Tours &amp; Travels</h3>
+          <p class="payment-card-desc">
+            Direct account transfer for cab bookings, airport pickups, outstation advances, and tour packages.
+            Instant, secure, and governed by NPCI standards.
+          </p>
+
+          <div class="payment-details-list">
+            <div class="payment-detail-item">
+              <span class="detail-label">Payment Receiver:</span>
+              <span class="detail-val" id="paymentSectionPhone">+91 87478 29020</span>
+            </div>
+            <div class="payment-detail-item">
+              <span class="detail-label">Bank Account:</span>
+              <span class="detail-val">Kotak Mahindra Bank - 5238</span>
+            </div>
+            <div class="payment-detail-item">
+              <span class="detail-label">Supported Apps:</span>
+              <span class="detail-val">PhonePe, GPay, Paytm, BHIM &amp; Any UPI App</span>
+            </div>
+          </div>
+
+          <div class="payment-assurance-pills">
+            <div class="assurance-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>100% Direct Transfer</span>
+            </div>
+            <div class="assurance-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Zero Extra Fee</span>
+            </div>
+            <div class="assurance-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>No Credentials Stored</span>
+            </div>
+          </div>
+
+          <div class="payment-cta-actions">
+            <button type="button" class="btn btn-primary btn-pay-now-action" data-action="open-payment-modal" id="sectionPayNowBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              <span>Pay Now / Enter Amount</span>
+            </button>
+            <span class="payment-cta-note">Opens clean payment modal • Custom amount supported</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive QR Preview Card -->
+        <div class="payment-qr-preview-wrapper">
+          <div class="payment-qr-card" id="paymentSectionQRCard" role="button" tabindex="0" aria-label="Click to open payment modal and enter amount">
+            <div class="qr-card-header">
+              <div class="bank-pill">
+                <span class="bank-dot"></span>
+                <span>Kotak Mahindra Bank - 5238</span>
+              </div>
+              <span class="qr-tap-badge">Click / Tap to Pay</span>
+            </div>
+
+            <div class="qr-image-container">
+              <img src="images/phonepe-merchant-qr.png" alt="Merchant UPI QR Code" class="qr-static-preview" loading="lazy" />
+              <div class="qr-hover-overlay">
+                <div class="qr-hover-circle">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <span>Enter Amount &amp; Pay</span>
+              </div>
+            </div>
+
+            <div class="qr-card-footer">
+              <div class="phonepe-brand-pill">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Receiving on PhonePe • lucky</span>
+              </div>
+              <p class="qr-hint-text">Scan with any UPI app or click here to enter custom payment amount.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
        CONTACT & SUPPORT SYSTEM (Phase 12: Real Backend-Connected Form)
        ========================================================================== -->
   <section class="contact-section-wrapper" id="contact">
@@ -1409,6 +1514,20 @@
             <span>Call Us</span>
           </a>
         </div>
+
+        <!-- Booking UPI Advance Payment Trigger (Requirement 13) -->
+        <div class="booking-advance-pay-box" style="margin-top:18px; padding:16px; background:var(--color-surface-elevated); border:1px dashed var(--color-secondary); border-radius:var(--radius-input); text-align:center;">
+          <div style="font-size:0.88rem; font-weight:700; color:var(--color-primary); margin-bottom:4px;">
+            Pay Advance / Fare via UPI
+          </div>
+          <p style="font-size:0.8rem; color:var(--color-muted); margin-bottom:12px;">
+            Want to pay a deposit or ride fare now? Pay securely via PhonePe, GPay, Paytm, or BHIM.
+          </p>
+          <button type="button" class="btn btn-primary" id="btnBookingPayUPI" style="width:100%; justify-content:center; height:46px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <span>Make a Payment for this Booking</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1497,6 +1616,265 @@
           🔒 Moderation policy: Submissions are reviewed to prevent spam before being published. Your email is never displayed publicly.
         </p>
       </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFICIAL UPI PAYMENT MODAL (NPCI Compliant & Responsive)
+       ========================================================================== -->
+  <div class="modal-overlay" id="paymentModalOverlay" role="dialog" aria-modal="true" aria-labelledby="payModalHeaderTitle">
+    <div class="modal-card payment-modal-card">
+      <button type="button" class="modal-close-btn" id="closePayModalBtn" aria-label="Close Payment Modal">✕</button>
+
+      <!-- Modal Header -->
+      <div class="modal-header payment-modal-header">
+        <div class="payment-header-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+        </div>
+        <h3 class="modal-title" id="payModalHeaderTitle">Make a Payment</h3>
+        <p class="modal-desc" id="payModalHeaderDesc">Shashank Tours &amp; Travels Official UPI Gateway</p>
+      </div>
+
+      <!-- STEP 1: Amount Entry (Requirement 3, 4, 5, 6) -->
+      <div id="payStepAmount" class="pay-step-panel">
+        <form class="modal-form" id="payAmountForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="payModalAmountInput">
+              Enter the amount you want to pay <span style="color:#E02424;">*</span>
+            </label>
+            <div class="amount-input-wrapper">
+              <span class="currency-symbol">₹</span>
+              <input
+                type="number"
+                class="modal-input amount-number-input"
+                id="payModalAmountInput"
+                name="amount"
+                placeholder="0.00"
+                min="1"
+                step="any"
+                inputmode="decimal"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="field-error-msg" id="payModalAmountError" style="display:none; color:#E02424; font-size:0.84rem; margin-top:6px; font-weight:600;"></div>
+          </div>
+
+          <!-- Quick Preset Chips -->
+          <div class="preset-chips-group">
+            <span class="preset-label">Quick amounts:</span>
+            <div class="preset-chips-list">
+              <button type="button" class="pay-preset-chip" data-value="500">₹500</button>
+              <button type="button" class="pay-preset-chip" data-value="1000">₹1,000</button>
+              <button type="button" class="pay-preset-chip" data-value="2500">₹2,500</button>
+              <button type="button" class="pay-preset-chip" data-value="5000">₹5,000</button>
+            </div>
+          </div>
+
+          <!-- Optional Reference / Booking ID -->
+          <div class="form-group" style="margin-top:14px;">
+            <label class="form-label" for="payModalRefInput">
+              Booking ID or Note <span style="font-size:0.8rem; color:var(--color-muted); font-weight:normal;">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              class="modal-input"
+              id="payModalRefInput"
+              name="reference"
+              placeholder="e.g. STT-BK-1234 / Coorg Tour Advance"
+              maxlength="50"
+            />
+          </div>
+
+          <!-- Payment Security Notice (Requirement 11) -->
+          <div class="payment-security-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Safe &amp; Direct: You will never be asked for UPI PIN, card details, or OTP on this website.</span>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="modal-actions" style="margin-top:18px;">
+            <button type="submit" class="btn btn-primary btn-continue-pay" id="btnContinueToPay" style="width:100%; justify-content:center; height:50px;">
+              <span>Continue to Pay</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: Pay Screen (Requirements 7, 8, 9, 10, 14, 15) -->
+      <div id="payStepPay" class="pay-step-panel" style="display:none;">
+        <div class="pay-amount-summary-strip">
+          <div class="summary-strip-left">
+            <span class="strip-label">Amount to Pay</span>
+            <span class="strip-amount pay-display-amount">₹0.00</span>
+          </div>
+          <button type="button" class="btn-change-amount" id="payModalBackToAmount" title="Change payment amount">
+            Change
+          </button>
+        </div>
+
+        <div class="merchant-info-strip">
+          <div class="merchant-info-row">
+            <span class="merchant-info-key">Payee:</span>
+            <span class="merchant-info-val">Shashank Tours &amp; Travels</span>
+          </div>
+          <div class="merchant-info-row">
+            <span class="merchant-info-key">Phone:</span>
+            <span class="merchant-info-val" id="payDisplayPhone">+91 87478 29020</span>
+          </div>
+          <div class="merchant-info-row">
+            <span class="merchant-info-key">UPI ID:</span>
+            <div class="upi-id-copy-row">
+              <code class="upi-code" id="payDisplayUpiId">shashankluck@axl</code>
+              <button type="button" class="btn-copy-upi" id="payModalCopyUpiBtn" aria-label="Copy UPI ID">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile UPI Flow: "Pay by any UPI app" (Requirement 8) -->
+        <div class="mobile-upi-flow-card">
+          <div class="flow-card-title">Pay by any UPI app</div>
+          <p class="flow-card-desc">Tap below to open your installed UPI application and authorize payment directly:</p>
+
+          <a href="#" class="btn btn-primary btn-pay-universal" id="btnPayUniversalUpi">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+            <span>Pay by Any UPI App</span>
+          </a>
+
+          <div class="specific-upi-apps">
+            <span class="specific-apps-label">Or choose installed app:</span>
+            <div class="specific-apps-grid">
+              <button type="button" class="btn-upi-app" data-upi-scheme="gpay" title="Pay with Google Pay">
+                <span class="app-icon gpay-icon">GPay</span>
+                <span class="app-name">Google Pay</span>
+              </button>
+              <button type="button" class="btn-upi-app" data-upi-scheme="phonepe" title="Pay with PhonePe">
+                <span class="app-icon phonepe-icon">Pe</span>
+                <span class="app-name">PhonePe</span>
+              </button>
+              <button type="button" class="btn-upi-app" data-upi-scheme="paytm" title="Pay with Paytm">
+                <span class="app-icon paytm-icon">Paytm</span>
+                <span class="app-name">Paytm</span>
+              </button>
+              <button type="button" class="btn-upi-app" data-upi-scheme="bhim" title="Pay with BHIM">
+                <span class="app-icon bhim-icon">BHIM</span>
+                <span class="app-name">BHIM</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop QR Flow (Requirement 9 & 10) -->
+        <div class="desktop-qr-flow-card">
+          <div class="qr-tab-nav">
+            <button type="button" class="qr-tab-btn active" id="qrTabDynamic">
+              Dynamic UPI QR (<span class="pay-display-amount">₹0.00</span>)
+            </button>
+            <button type="button" class="qr-tab-btn" id="qrTabStatic">
+              Merchant PhonePe QR (Fallback)
+            </button>
+          </div>
+
+          <!-- Dynamic QR View -->
+          <div id="qrViewDynamic" class="qr-tab-content">
+            <div class="qr-canvas-holder">
+              <canvas id="dynamicQrCanvas" width="230" height="230" class="qr-canvas"></canvas>
+            </div>
+            <p class="qr-scan-instruction">
+              Scan this QR code with any UPI app to pay <strong class="pay-display-amount">₹0.00</strong>
+            </p>
+          </div>
+
+          <!-- Static Fallback QR View -->
+          <div id="qrViewStatic" class="qr-tab-content" style="display:none;">
+            <div class="qr-static-holder">
+              <img src="images/phonepe-merchant-card.png" alt="Merchant PhonePe QR Card" class="qr-static-img" />
+            </div>
+            <div class="qr-static-notice">
+              ⚠️ <strong>Original Merchant PhonePe QR (Kotak Mahindra Bank):</strong>
+              Please enter the amount (<span class="pay-display-amount">₹0.00</span>) manually in your UPI app after scanning.
+            </div>
+          </div>
+        </div>
+
+        <!-- Post-Pay Check Actions (Requirement 12) -->
+        <div class="pay-post-actions">
+          <button type="button" class="btn btn-secondary-outline" id="btnPayCompleted" style="width:100%; justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>I Have Sent the Payment</span>
+          </button>
+          <button type="button" class="btn-cancel-retry" id="btnPayRetry">
+            Cancel / Change Amount
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Payment Initiated Status (Requirement 11 & 12) -->
+      <div id="payStepStatus" class="pay-step-panel" style="display:none;">
+        <div class="status-icon-box status-initiated">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+
+        <div class="status-badge-initiated">Payment Initiated</div>
+        <h4 class="status-title">UPI Payment Request Opened</h4>
+        <p class="status-desc">
+          Your payment request of <strong id="statusDisplayAmount">₹0.00</strong> was initiated via UPI.
+          Please complete authorization inside your UPI application.
+        </p>
+
+        <div class="status-details-box">
+          <div class="status-row">
+            <span>Reference:</span>
+            <strong id="statusDisplayRef">Direct Payment</strong>
+          </div>
+          <div class="status-row">
+            <span>Payee:</span>
+            <strong>Shashank Tours &amp; Travels</strong>
+          </div>
+          <div class="status-row">
+            <span>Verification:</span>
+            <span class="verification-pending-tag">Bank Reconciliation Pending</span>
+          </div>
+        </div>
+
+        <div class="utr-entry-section">
+          <label class="form-label" for="paymentUtrInput">
+            Enter 12-digit UPI Reference / UTR Number <span style="font-size:0.8rem; color:var(--color-muted);">(Optional)</span>
+          </label>
+          <input
+            type="text"
+            class="modal-input"
+            id="paymentUtrInput"
+            placeholder="e.g. 402812345678"
+            maxlength="25"
+          />
+          <span style="font-size:0.78rem; color:var(--color-muted); margin-top:4px; display:block;">
+            Found in your Google Pay, PhonePe, or Paytm transaction details.
+          </span>
+        </div>
+
+        <!-- WhatsApp Notification Action -->
+        <div class="modal-actions" style="margin-top:16px;">
+          <button type="button" class="btn btn-whatsapp" id="btnNotifyPaymentWhatsApp" style="width:100%; justify-content:center; height:50px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Confirm Payment on WhatsApp</span>
+          </button>
+        </div>
+
+        <p class="status-disclaimer">
+          🔒 <strong>Note on Payment Status:</strong> This records payment initiation. Your booking will be officially marked as paid once reconciled with our bank credits. We do not store any banking passwords or PINs.
+        </p>
+
+        <div style="text-align:center; margin-top:14px;">
+          <button type="button" class="btn-text-link" id="btnDoneClosePayment">
+            Done / Close Window
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 

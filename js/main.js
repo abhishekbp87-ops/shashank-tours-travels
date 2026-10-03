@@ -6,6 +6,7 @@ import { fleetData } from '../data/fleet.js';
 import { toursData } from '../data/tours.js';
 import { whyChooseUsData, howItWorksSteps } from '../data/testimonials.js';
 import { initJourneyMotion } from './journeyMotion.js';
+import { initPaymentSystem, openPaymentModal, closePaymentModal } from './payment.js';
 
 // Base API URL for flexible deployment (monolithic or separated client/server)
 const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
@@ -32,6 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   setupQuickActionLinks();
   initJourneyMotion();
+  initPaymentSystem();
+
+  // Expose payment modal globally for CTA triggers
+  window.openPaymentModal = openPaymentModal;
+  window.closePaymentModal = closePaymentModal;
 });
 
 /* ==========================================================================
@@ -1435,6 +1441,37 @@ async function executeBookingConfirmation() {
       waBtn.href = `https://wa.me/${companyInfo.whatsappRaw}?text=${waText}`;
       waBtn.target = '_blank';
       waBtn.rel = 'noopener noreferrer';
+    }
+
+    // Preserve booking state in localStorage (Requirement 13)
+    try {
+      localStorage.setItem('last_booking', JSON.stringify({
+        bookingId: generatedBookingId,
+        customerName: name,
+        customerPhone: phone,
+        pickup: currentBookingState.pickup || '',
+        drop: currentBookingState.drop || '',
+        date: currentBookingState.date || '',
+        time: currentBookingState.time || '',
+        vehicle: currentBookingState.vehicle || '',
+        tripType: currentBookingState.tripType || '',
+        notes: notes || '',
+        createdAt: new Date().toISOString()
+      }));
+    } catch {}
+
+    // Booking Advance Pay via UPI Button
+    const payUpiBtn = document.getElementById('btnBookingPayUPI');
+    if (payUpiBtn) {
+      payUpiBtn.onclick = () => {
+        closeBookingModal();
+        openPaymentModal({
+          bookingId: generatedBookingId,
+          customerName: name,
+          customerPhone: phone,
+          reference: `Booking #${generatedBookingId}`
+        });
+      };
     }
   }
 }

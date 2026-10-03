@@ -19,6 +19,18 @@ export const businessConfig = {
     hubCity: "Bengaluru, Karnataka"
   },
 
+  // Official UPI Payment Configuration (NPCI Deep-link & Dynamic QR compliant)
+  payment: {
+    upiId: (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_UPI_ID) || 'shashankluck@axl',
+    merchantName: (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_MERCHANT_NAME) || 'Shashank Tours & Travels',
+    payeeName: 'P SHASHANK',
+    phone: (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_PAYMENT_PHONE) || '+91 87478 29020',
+    phoneRaw: '918747829020',
+    bankName: 'Kotak Mahindra Bank - 5238',
+    staticQrPath: 'images/phonepe-merchant-qr.png',
+    staticCardPath: 'images/phonepe-merchant-card.png',
+  },
+
   // Service descriptions (factual benefits, not fabricated stats)
   heroBenefits: [
     {
