@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Theme Initialization (Prevent FOUC) -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('apex_theme') || localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  
+  <!-- Primary Meta Tags -->
+  <title>Shashank Tours &amp; Travels | Premium Outstation, Local &amp; Airport Cab Services</title>
+  <meta name="title" content="Shashank Tours &amp; Travels | Premium Outstation, Local &amp; Airport Cab Services" />
+  <meta name="description" content="Book reliable, safe and premium cab services for local city travel, outstation trips, airport transfers, and customized holiday tour packages. Verified drivers, transparent pricing, 24/7 support." />
+  <meta name="keywords" content="cab booking, outstation taxi, bangalore cabs, toyota rumion rental, airport taxi, mysore cab, coorg tour package, ooty cab service, shashank tours and travels" />
+  <meta name="theme-color" content="#FAF9F6" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shashank Tours &amp; Travels | Premium Outstation, Local &amp; Airport Cab Services" />
+  <meta property="og:description" content="Travel Comfortably. Explore Freely. Comfortable, safe and reliable cab services for local travel, outstation trips and holiday tours." />
+  <meta property="og:image" content="images/client-vehicle.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Google Fonts: Manrope (Body, UI, & Headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema.org JSON-LD Structured Data for Local Business / Taxi Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "name": "Shashank Tours & Travels",
+    "image": "images/client-vehicle.jpg",
+    "telephone": "+918904216594",
+    "email": "shashanktoursandtravels23@gmail.com",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "MG Road, Indiranagar",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560038",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR (Pure White, Subtle Border, Soft Shadow)
+       ========================================================================== -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      <!-- Brand Logo (Compact: 48-52px max height) -->
+      <a href="#home" class="logo" aria-label="Shashank Tours &amp; Travels Home">
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+            <circle cx="7" cy="17" r="2"/>
+            <path d="M9 17h6"/>
+            <circle cx="17" cy="17" r="2"/>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <div class="logo-brand">SHASHANK</div>
+          <span class="logo-sub">TOURS &amp; TRAVELS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links with Dropdowns -->
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <!-- 1. Home Link -->
+        <a href="#home" class="nav-item-link active" data-nav="home">Home</a>
+
+        <!-- 2. Services Mega Dropdown -->
+        <div class="nav-dropdown-item" data-dropdown="services">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true" data-nav="services">
+            <span>Services</span>
+            <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu dropdown-mega-services" role="menu">
+            <div class="dropdown-mega-grid">
+              <div class="dropdown-col">
+                <div class="dropdown-col-header">CAB SERVICES</div>
+                <ul class="dropdown-list">
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Local Cab</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Airport Transfer</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>One Way Taxi</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Round Trip Outstation</a></li>
+                </ul>
+              </div>
+              <div class="dropdown-col">
+                <div class="dropdown-col-header">TRAVEL SERVICES</div>
+                <ul class="dropdown-list">
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Outstation Trips</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Corporate Travel</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Hourly Rental (4hr/8hr)</a></li>
+                  <li><a href="#services" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Intercity Transfers</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#bookingWidget" class="dropdown-cta-btn">
+                <span>Book a Cab</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Destinations Dropdown (Incorporating Routes) -->
+        <div class="nav-dropdown-item" data-dropdown="destinations">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true" data-nav="destinations">
+            <span>Destinations</span>
+            <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu dropdown-destinations" role="menu">
+            <div class="dropdown-mega-grid">
+              <div class="dropdown-col">
+                <div class="dropdown-col-header">POPULAR DESTINATIONS</div>
+                <ul class="dropdown-list">
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Mysore Heritage</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Coorg Hills &amp; Coffee</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Ooty &amp; Nilgiris</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Chikmagalur Peaks</a></li>
+                </ul>
+              </div>
+              <div class="dropdown-col">
+                <div class="dropdown-col-header">MORE DESTINATIONS</div>
+                <ul class="dropdown-list">
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Wayanad Rainforest</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Kabini Safari &amp; River</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Goa Coastal Gateway</a></li>
+                  <li><a href="#destinations" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Tirupati Balaji</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#destinations" class="dropdown-footer-link">
+                <span>Explore All Destinations</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Our Fleet Dropdown (Visual Mini Dropdown) -->
+        <div class="nav-dropdown-item" data-dropdown="fleet">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true" data-nav="fleet">
+            <span>Our Fleet</span>
+            <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu dropdown-fleet" role="menu">
+            <div class="dropdown-fleet-list">
+              <a href="#fleet" class="dropdown-fleet-card" role="menuitem">
+                <img src="images/client-vehicle.jpg" alt="Toyota Rumion" class="dropdown-vehicle-thumb" loading="lazy" />
+                <div class="dropdown-fleet-info">
+                  <div class="dropdown-vehicle-name">Toyota Rumion</div>
+                  <div class="dropdown-vehicle-meta">6–7 Passengers • AC Captain Seats</div>
+                </div>
+              </a>
+              <a href="#fleet" class="dropdown-fleet-card" role="menuitem">
+                <img src="images/fleet-sedan.jpg" alt="Sedan" class="dropdown-vehicle-thumb" loading="lazy" />
+                <div class="dropdown-fleet-info">
+                  <div class="dropdown-vehicle-name">Prime Sedan</div>
+                  <div class="dropdown-vehicle-meta">4 Passengers • Dzire / Etios</div>
+                </div>
+              </a>
+              <a href="#fleet" class="dropdown-fleet-card" role="menuitem">
+                <img src="images/fleet-suv.jpg" alt="SUV" class="dropdown-vehicle-thumb" loading="lazy" />
+                <div class="dropdown-fleet-info">
+                  <div class="dropdown-vehicle-name">Luxury SUV</div>
+                  <div class="dropdown-vehicle-meta">6–7 Passengers • Hycross / Ertiga</div>
+                </div>
+              </a>
+              <a href="#fleet" class="dropdown-fleet-card" role="menuitem">
+                <img src="images/fleet-tempo.jpg" alt="Tempo Traveller" class="dropdown-vehicle-thumb" loading="lazy" />
+                <div class="dropdown-fleet-info">
+                  <div class="dropdown-vehicle-name">Tempo Traveller</div>
+                  <div class="dropdown-vehicle-meta">9–16 Passengers • Large Groups</div>
+                </div>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#fleet" class="dropdown-footer-link">
+                <span>Explore Full Fleet &amp; Rates</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Tours Dropdown -->
+        <div class="nav-dropdown-item" data-dropdown="tours">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true" data-nav="tours">
+            <span>Tours</span>
+            <svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu dropdown-tours" role="menu">
+            <div class="dropdown-col-header">POPULAR TOURS</div>
+            <ul class="dropdown-list">
+              <li><a href="#tours" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Coorg Tour Package (3D/2N)</a></li>
+              <li><a href="#tours" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Queen of Hills: Ooty &amp; Coonoor</a></li>
+              <li><a href="#tours" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Mysore Royal Heritage Tour</a></li>
+              <li><a href="#tours" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Chikmagalur Coffee &amp; Trek</a></li>
+              <li><a href="#tours" class="dropdown-link" role="menuitem"><span class="dropdown-dot"></span>Custom South India Tours</a></li>
+            </ul>
+            <div class="dropdown-footer">
+              <a href="#tours" class="dropdown-footer-link">
+                <span>View All Tour Packages</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Customer Reviews Direct Link -->
+        <a href="#reviews" class="nav-item-link" data-nav="reviews">Reviews</a>
+
+        <!-- 7. About Us Direct Link -->
+        <a href="#why-us" class="nav-item-link" data-nav="why-us">About Us</a>
+
+        <!-- 8. Contact Direct Link -->
+        <a href="#contact" class="nav-item-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <!-- Header Action CTAs (Right Side) -->
+      <div class="header-actions">
+        <!-- Dark / Light Theme Toggle -->
+        <button type="button" class="theme-toggle-btn" id="headerThemeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <!-- Compact Phone Button -->
+        <a href="tel:918904216594" class="header-phone" data-company-phone aria-label="Call +91 89042 16594">
+          <svg class="phone-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="phone-number">+91 89042 16594</span>
+        </a>
+
+        <!-- Single Primary CTA: Book a Cab -->
+        <button class="header-primary-btn" id="headerBookBtn" onclick="document.getElementById('bookingWidget').scrollIntoView({behavior: 'smooth'})" aria-label="Book a Cab">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+          <span>Book a Cab</span>
+        </button>
+
+        <!-- Mobile Phone Quick Action -->
+        <a href="tel:918904216594" class="mobile-phone-btn" data-company-phone aria-label="Call Shashank Tours and Travels">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Overlay & Menu (Accordion Based) -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="mobile-drawer-header">
+      <div class="logo mobile-drawer-logo">
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+        </div>
+        <div class="logo-text-group">
+          <div class="logo-brand">SHASHANK</div>
+          <span class="logo-sub">TOURS &amp; TRAVELS</span>
+        </div>
+      </div>
+      <div class="mobile-drawer-header-actions">
+        <button type="button" class="theme-toggle-btn mobile-drawer-theme-toggle" id="drawerThemeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <button class="mobile-drawer-close" id="closeDrawer" aria-label="Close Navigation Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Accordion Navigation -->
+    <nav class="mobile-drawer-nav">
+      <a href="#home" class="mobile-nav-link active" data-mobile-nav="home">Home</a>
+
+      <!-- Services Accordion -->
+      <div class="mobile-accordion-item">
+        <button class="mobile-accordion-btn" aria-expanded="false" data-accordion="services">
+          <span>Services</span>
+          <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-accordion-content">
+          <a href="#services" class="mobile-sub-link">Local Cab</a>
+          <a href="#services" class="mobile-sub-link">Airport Transfer</a>
+          <a href="#services" class="mobile-sub-link">Outstation Cab</a>
+          <a href="#services" class="mobile-sub-link">Round Trip</a>
+          <a href="#services" class="mobile-sub-link">One Way Taxi</a>
+          <a href="#services" class="mobile-sub-link">Corporate Travel</a>
+          <a href="#services" class="mobile-sub-link">Hourly Rental</a>
+        </div>
+      </div>
+
+      <!-- Destinations Accordion -->
+      <div class="mobile-accordion-item">
+        <button class="mobile-accordion-btn" aria-expanded="false" data-accordion="destinations">
+          <span>Destinations</span>
+          <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-accordion-content">
+          <a href="#destinations" class="mobile-sub-link">Mysore Heritage</a>
+          <a href="#destinations" class="mobile-sub-link">Coorg Hills</a>
+          <a href="#destinations" class="mobile-sub-link">Ooty &amp; Nilgiris</a>
+          <a href="#destinations" class="mobile-sub-link">Wayanad Rainforest</a>
+          <a href="#destinations" class="mobile-sub-link">Goa Coastal Gateway</a>
+        </div>
+      </div>
+
+      <!-- Our Fleet Accordion -->
+      <div class="mobile-accordion-item">
+        <button class="mobile-accordion-btn" aria-expanded="false" data-accordion="fleet">
+          <span>Our Fleet</span>
+          <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-accordion-content">
+          <a href="#fleet" class="mobile-sub-link">Toyota Rumion (6-7 Pax)</a>
+          <a href="#fleet" class="mobile-sub-link">Prime Sedan (4 Pax)</a>
+          <a href="#fleet" class="mobile-sub-link">Luxury SUV (6-7 Pax)</a>
+          <a href="#fleet" class="mobile-sub-link">Tempo Traveller (9-16 Pax)</a>
+        </div>
+      </div>
+
+      <!-- Tours Accordion -->
+      <div class="mobile-accordion-item">
+        <button class="mobile-accordion-btn" aria-expanded="false" data-accordion="tours">
+          <span>Tours</span>
+          <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="mobile-accordion-content">
+          <a href="#tours" class="mobile-sub-link">Coorg Tour Package</a>
+          <a href="#tours" class="mobile-sub-link">Ooty &amp; Coonoor Tour</a>
+          <a href="#tours" class="mobile-sub-link">Mysore Heritage Tour</a>
+          <a href="#tours" class="mobile-sub-link">Chikmagalur Tour</a>
+          <a href="#tours" class="mobile-sub-link">Custom Tour Packages</a>
+        </div>
+      </div>
+
+      <a href="#reviews" class="mobile-nav-link" data-mobile-nav="reviews">Customer Reviews</a>
+      <a href="#how-it-works" class="mobile-nav-link" data-mobile-nav="how-it-works">How It Works</a>
+      <a href="#why-us" class="mobile-nav-link" data-mobile-nav="why-us">About Us</a>
+      <a href="#contact" class="mobile-nav-link" data-mobile-nav="contact">Contact</a>
+    </nav>
+
+    <!-- Mobile Drawer Footer Actions -->
+    <div class="mobile-drawer-footer">
+      <a href="tel:918904216594" class="mobile-drawer-btn mobile-drawer-call" data-company-phone>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Call: +91 89042 16594</span>
+      </a>
+      <button class="mobile-drawer-btn mobile-drawer-book" onclick="document.getElementById('bookingWidget').scrollIntoView({behavior: 'smooth'}); document.getElementById('closeDrawer').click();">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+        <span>Book a Cab</span>
+      </button>
+      <a href="https://wa.me/918904216594?text=Hello%20Shashank%20Tours%20and%20Travels,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20cab" class="mobile-drawer-btn mobile-drawer-wa" data-company-wa target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>WhatsApp Us</span>
+      </a>
+    </div>
+  </div>  <!-- ==========================================================================
+       HERO SECTION — PINNED SCROLL-SCRUBBED SCENE & DISCIPLINED CONTRAST
+       Techniques from uAvionix.com:
+       1. Hero pins during scroll progress across 5 stages, then cleanly releases.
+       2. Dedicated Left-Column Text Safe Zone (100% full brand contrast, no overlap).
+       3. Synchronized Minimal Status Caption in upper-right open space.
+       4. Road path curves strictly in right scenic zone (x: 620 -> 1320).
+       5. Milestone labels reveal ONLY when active stop is reached.
+       ========================================================================== -->
+  <section class="hero" id="home">
+    <!-- Pinned Background Stage (Full Viewport, z-index: 1) -->
+    <div class="hero-scenic-stage" id="heroScenicStage">
+      <!-- Animated Sky Canvas (Warm Ivory -> Soft Blue) -->
+      <div class="scenic-sky" id="scenicSky"></div>
+
+      <!-- SVG Scenic Canvas (1400 x 700) -->
+      <svg class="scenic-svg" id="journeySvg" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Soft Morning Sunlight Radial Gradient -->
+          <radialGradient id="sunGlowGrad" cx="82%" cy="16%" r="65%">
+            <stop offset="0%" stop-color="#FDE8B3" stop-opacity="0.36" />
+            <stop offset="25%" stop-color="#D9A441" stop-opacity="0.20" />
+            <stop offset="55%" stop-color="#F8F7F1" stop-opacity="0.06" />
+            <stop offset="100%" stop-color="#FAF9F6" stop-opacity="0" />
+          </radialGradient>
+
+          <!-- Sun Orb Core Gradient -->
+          <radialGradient id="sunOrbGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFFDF5" />
+            <stop offset="50%" stop-color="#FDE29E" />
+            <stop offset="100%" stop-color="#D9A441" stop-opacity="0.9" />
+          </radialGradient>
+
+          <!-- Directional Sun Rays Gradient -->
+          <linearGradient id="sunRaysGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF3C4" stop-opacity="0.24" />
+            <stop offset="50%" stop-color="#D9A441" stop-opacity="0.08" />
+            <stop offset="100%" stop-color="#D9A441" stop-opacity="0" />
+          </linearGradient>
+
+          <!-- Left Text Safe-Zone Scrim (Pure Warm Ivory Backdrop behind text) -->
+          <linearGradient id="textSafeZoneScrim" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FAF9F6" stop-opacity="1" />
+            <stop offset="58%" stop-color="#FAF9F6" stop-opacity="0.98" />
+            <stop offset="78%" stop-color="#FAF9F6" stop-opacity="0.75" />
+            <stop offset="100%" stop-color="#FAF9F6" stop-opacity="0" />
+          </linearGradient>
+
+          <!-- Mountain Layer 1: Far Nilgiri Misty Peaks -->
+          <linearGradient id="gradFarPeaks" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#B8D3D8" stop-opacity="0.75" />
+            <stop offset="100%" stop-color="#DCE8EA" stop-opacity="0.95" />
+          </linearGradient>
+
+          <!-- Mountain Layer 2: Mid-Far Ghats Ridge -->
+          <linearGradient id="gradMidRidgeSun" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4B96A3" />
+            <stop offset="100%" stop-color="#2D727F" />
+          </linearGradient>
+
+          <!-- Mountain Layer 3: Mid-Near Shola Forest Hills -->
+          <linearGradient id="gradNearRidge" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#1E5664" />
+            <stop offset="60%" stop-color="#16434E" />
+            <stop offset="100%" stop-color="#0E2F37" />
+          </linearGradient>
+
+          <!-- Mountain Layer 4: Foreground Foothills -->
+          <linearGradient id="gradForegroundHills" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#153E47" />
+            <stop offset="50%" stop-color="#0F2E36" />
+            <stop offset="100%" stop-color="#081E24" />
+          </linearGradient>
+
+          <!-- Travel Highlight Ribbon Gradient (Soft Teal to Warm Amber) -->
+          <linearGradient id="travelHighlightGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2C8585" />
+            <stop offset="45%" stop-color="#3DA0A0" />
+            <stop offset="80%" stop-color="#E2B14D" />
+            <stop offset="100%" stop-color="#F2C76A" />
+          </linearGradient>
+
+          <!-- Headlight Beam Gradient -->
+          <linearGradient id="headlightBeamGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%" stop-color="#FFF8E0" stop-opacity="0.65" />
+            <stop offset="45%" stop-color="#F5D076" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#D9A441" stop-opacity="0" />
+          </linearGradient>
+
+          <!-- Depth Filters -->
+          <filter id="hazeBlurFar" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="1.0" />
+          </filter>
+          <filter id="roadGroundShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5.0" />
+          </filter>
+          <filter id="vehDropShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3.2" />
+          </filter>
+          <filter id="sunCoronaGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="highlightGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Sunlight & Sky Backdrop -->
+        <rect id="sunlightOverlay" width="1400" height="700" fill="url(#sunGlowGrad)" />
+        <circle id="sunOrb" cx="1200" cy="105" r="32" fill="url(#sunOrbGrad)" filter="url(#sunCoronaGlow)" />
+        <polygon id="sunRays" points="1200,105 1400,350 1400,700 920,700" fill="url(#sunRaysGrad)" opacity="0.08" />
+
+        <!-- Camera-Tracked Group -->
+        <g id="sceneCameraGroup" class="scene-camera-group">
+          <!-- Clouds Far -->
+          <g class="scenic-clouds clouds-far" id="layerCloudsFar">
+            <path d="M-100 140 C-40 140, 20 120, 100 120 C180 120, 240 135, 320 135 C400 135, 470 115, 560 115 C660 115, 730 130, 830 130 C930 130, 1000 110, 1100 110 C1200 110, 1280 128, 1380 128 C1460 128, 1510 115, 1550 115 L1550 180 L-100 180 Z" fill="#FFFFFF" fill-opacity="0.32" />
+          </g>
+
+          <!-- Mountains Far -->
+          <g class="scenic-mountains mountains-far" id="layerMountainsFar" filter="url(#hazeBlurFar)">
+            <path d="M0 380 L80 320 L180 360 L290 280 L400 330 L520 250 L640 310 L760 220 L890 290 L1020 210 L1150 270 L1260 220 L1340 260 L1400 230 L1400 580 L0 580 Z" fill="url(#gradFarPeaks)" />
+          </g>
+
+          <!-- Clouds Mid -->
+          <g class="scenic-clouds clouds-mid" id="layerCloudsMid">
+            <path d="M-80 220 C-10 220, 50 195, 120 195 C200 195, 260 215, 340 215 C420 215, 490 190, 580 190 C680 190, 750 210, 850 210 C940 210, 1010 192, 1100 192 C1200 192, 1280 212, 1370 212 C1460 212, 1510 195, 1550 195 L1550 260 L-80 260 Z" fill="#FFFFFF" fill-opacity="0.24" />
+          </g>
+
+          <!-- Mountains Mid -->
+          <g class="scenic-mountains mountains-mid" id="layerMountainsMid">
+            <path d="M0 460 Q140 360, 300 405 T620 370 T930 320 T1200 300 T1400 340 L1400 640 L0 640 Z" fill="url(#gradMidRidgeSun)" opacity="0.94" />
+            <path d="M0 460 Q140 360, 300 405 T620 370 T930 320 T1200 300 T1400 340" fill="none" stroke="#E5BA68" stroke-width="1.4" opacity="0.38" />
+            <g class="tree-cluster" id="treesFar">
+              <polygon points="595,372 601,354 607,372" fill="#1B4754" />
+              <polygon points="604,370 610,352 616,370" fill="#20505A" />
+              <polygon points="905,322 911,304 917,322" fill="#1B4754" />
+              <polygon points="914,320 920,302 926,320" fill="#20505A" />
+              <polygon points="1175,302 1181,284 1187,302" fill="#1E525C" />
+            </g>
+          </g>
+
+          <!-- Mountains Near -->
+          <g class="scenic-mountains mountains-near" id="layerMountainsNear">
+            <path d="M0 540 Q180 440, 400 485 Q610 520, 810 455 Q1030 400, 1230 435 Q1330 455, 1400 430 L1400 700 L0 700 Z" fill="url(#gradNearRidge)" />
+            <g class="tree-cluster" id="treesMid">
+              <polygon points="785,453 793,427 801,453" fill="#0E2B34" />
+              <polygon points="799,451 807,425 815,451" fill="#123F4A" />
+              <polygon points="1205,432 1213,406 1221,432" fill="#0E2B34" />
+            </g>
+          </g>
+
+          <!-- Foreground Foothills -->
+          <g class="scenic-mountains mountains-foreground" id="layerForegroundHills">
+            <path d="M0 620 Q210 540, 440 580 Q670 605, 870 535 Q1100 495, 1400 540 L1400 700 L0 700 Z" fill="url(#gradForegroundHills)" />
+            <g class="tree-cluster" id="treesNear">
+              <polygon points="675,568 683,538 691,568" fill="#06181D" />
+              <polygon points="975,518 983,488 991,518" fill="#06181D" />
+            </g>
+          </g>
+
+          <!-- LEFT TEXT SAFE-ZONE SCRIM (Subdues left 640px on desktop so text is 100% crisp) -->
+          <rect id="textSafeZoneScrimRect" class="text-safe-zone-scrim" x="0" y="0" width="640" height="700" fill="url(#textSafeZoneScrim)" />
+
+          <!-- ==========================================================
+               SCENIC HIGHWAY SYSTEM (Panoramic Hill Route: x from 620 to 1320)
+               Safe from text column! Smooth continuous travel animation
+               ========================================================== -->
+          <g class="scenic-road-system" id="layerRoad">
+            <!-- Roadbed Soft Cast Ground Shadow on Terrain -->
+            <path class="road-ground-shadow" d="M 620 620 C 680 615, 720 550, 780 520 C 840 490, 910 470, 970 430 C 1030 390, 1090 360, 1150 320 C 1210 280, 1270 220, 1320 180" fill="none" stroke="rgba(8, 24, 30, 0.42)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" filter="url(#roadGroundShadow)" />
+
+            <!-- Concrete Curbs & Shoulder Outer Bevel -->
+            <path class="road-curb-stroke" d="M 620 620 C 680 615, 720 550, 780 520 C 840 490, 910 470, 970 430 C 1030 390, 1090 360, 1150 320 C 1210 280, 1270 220, 1320 180" fill="none" stroke="#15262E" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" />
+            
+            <!-- Static Base Road (Dark Asphalt #223942) -->
+            <path id="scenicBaseRoad" class="scenic-base-road" d="M 620 620 C 680 615, 720 550, 780 520 C 840 490, 910 470, 970 430 C 1030 390, 1090 360, 1150 320 C 1210 280, 1270 220, 1320 180" fill="none" stroke="#223942" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" />
+
+            <!-- Smooth Flowing Road Centerline Guide Dashes -->
+            <path id="scenicRoadCenterline" class="scenic-road-centerline" d="M 620 620 C 680 615, 720 550, 780 520 C 840 490, 910 470, 970 430 C 1030 390, 1090 360, 1150 320 C 1210 280, 1270 220, 1320 180" fill="none" stroke="rgba(248, 247, 241, 0.40)" stroke-width="2.4" stroke-dasharray="10 14" />
+
+            <!-- Soft Ambient Travel Highlight Ribbon -->
+            <path id="scenicTravelHighlight" class="scenic-travel-highlight" d="M 620 620 C 680 615, 720 550, 780 520 C 840 490, 910 470, 970 430 C 1030 390, 1090 360, 1150 320 C 1210 280, 1270 220, 1320 180" fill="none" stroke="url(#travelHighlightGrad)" stroke-width="4.5" stroke-linecap="round" filter="url(#highlightGlow)" opacity="0.75" />
+          </g>
+
+          <!-- Hero Vehicle (Luxury Cab Silhouette with 3D Perspective Depth) -->
+          <g id="journeyVehicle" class="journey-vehicle" transform="translate(620, 620) rotate(-4.8)">
+            <ellipse cx="-2" cy="3" rx="15" ry="6.5" fill="rgba(10, 28, 34, 0.44)" filter="url(#vehDropShadow)" />
+            <polygon id="headlightBeam1" points="14,-4 42,-12 42,-2 14,-2" fill="url(#headlightBeamGrad)" opacity="0.45" />
+            <polygon id="headlightBeam2" points="14,2 42,2 42,12 14,4" fill="url(#headlightBeamGrad)" opacity="0.45" />
+            <g class="vehicle-chassis">
+              <rect x="-13" y="-6.5" width="26" height="13" rx="4" fill="#123F4A" stroke="#2C8585" stroke-width="0.8" />
+              <path d="M-11,-6 L11,-6" stroke="rgba(255, 255, 255, 0.32)" stroke-width="0.8" stroke-linecap="round" />
+              <rect x="-6" y="-5" width="13" height="10" rx="2.5" fill="#0A2026" />
+              <path d="M4.5,-4.2 L7.5,-2.6 L7.5,2.6 L4.5,4.2 Z" fill="#D3E5E8" opacity="0.9" />
+              <path d="M-3.5,-4.2 L-6.2,-2.6 L-6.2,2.6 L-3.5,4.2 Z" fill="#7A9AA2" opacity="0.75" />
+              <rect x="-3" y="-4.8" width="6.5" height="1.1" rx="0.4" fill="#D3E5E8" opacity="0.85" />
+              <rect x="-3" y="3.7" width="6.5" height="1.1" rx="0.4" fill="#D3E5E8" opacity="0.85" />
+              <rect x="-2" y="-1.2" width="4" height="2.4" rx="0.6" fill="#D9A441" />
+              <circle cx="12.6" cy="-4" r="1.3" fill="#FFF8E0" />
+              <circle cx="12.6" cy="4" r="1.3" fill="#FFF8E0" />
+              <rect x="-13.2" y="-5.2" width="1.2" height="2" rx="0.5" fill="#EF4444" opacity="0.9" />
+              <rect x="-13.2" y="3.2" width="1.2" height="2" rx="0.5" fill="#EF4444" opacity="0.9" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Foreground Content Layer (z-index: 5, Full Opacity, Never Faded) -->
+    <div class="hero-content-layer">
+      <div class="container">
+        <div class="hero-content">
+          <div class="section-badge hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            TRUSTED CAB &amp; TOUR SERVICE
+          </div>
+          
+          <h1 class="hero-heading">
+            Travel Comfortably. <span class="hero-heading-highlight">Explore Freely.</span>
+          </h1>
+
+          <p class="hero-desc">
+            Reliable cab services for airport transfers, local travel, outstation journeys and memorable tours across South India.
+          </p>
+
+          <div class="hero-ctas">
+            <button class="btn btn-primary" onclick="document.getElementById('bookingWidget').scrollIntoView({behavior: 'smooth'})">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>
+              <span>Book a Cab</span>
+            </button>
+            <a href="#" class="btn btn-whatsapp" data-company-wa>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+
+          <div class="trust-indicators-inline">
+            <div class="trust-indicator-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Professional Service</span>
+            </div>
+            <div class="trust-indicator-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Transparent Booking</span>
+            </div>
+            <div class="trust-indicator-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Easy Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BOOKING CARD / WIDGET (Soft Blue Background, Crisp White Form Card)
+       ========================================================================== -->
+  <!-- ==========================================================================
+       BOOKING EXPERIENCE REDESIGN (Modern, Friendly, Destination -> Time -> Vehicle -> Book)
+       ========================================================================== -->
+  <section class="booking-widget-section" id="bookingWidget">
+    <div class="container">
+      <div class="booking-card" id="bookingMainCard">
+        <!-- Card Header: Title & Friendly Subtitle on Left, Minimal Travel Type Selector on Right -->
+        <div class="booking-card-header">
+          <div class="booking-header-text">
+            <h2 class="booking-main-title">Where are you going?</h2>
+            <p class="booking-main-sub">Tell us your pickup and destination. We'll handle the rest.</p>
+          </div>
+          
+          <!-- Lightweight Travel-Type Selector (No heavy outer box) -->
+          <div class="travel-type-nav" role="tablist" aria-label="Travel Type">
+            <button class="travel-type-btn active" data-trip="One Way" type="button">One Way</button>
+            <button class="travel-type-btn" data-trip="Round Trip" type="button">Round Trip</button>
+            <button class="travel-type-btn" data-trip="Local" type="button">Local</button>
+            <button class="travel-type-btn" data-trip="Airport Transfer" type="button">Airport</button>
+          </div>
+        </div>
+
+        <!-- Redesigned Booking Form -->
+        <form id="mainBookingForm" novalidate autocomplete="off">
+          <!-- STEP 1: HERO OF THE FORM — PICKUP & DESTINATION with SWAP BUTTON -->
+          <div class="booking-row booking-route-hero">
+            <!-- Pickup Location Field -->
+            <div class="booking-field-wrapper field-pickup" id="pickupFieldWrapper">
+              <label class="field-micro-label" for="pickupLocation">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Pickup Location</span>
+              </label>
+              <div class="input-container">
+                <input type="text" id="pickupLocation" class="hero-input" placeholder="Enter pickup location" value="Bangalore City" required />
+                <button type="button" class="field-clear-btn" id="clearPickupBtn" aria-label="Clear pickup" style="display:none;">&times;</button>
+              </div>
+              <div class="field-error-msg" id="pickupError"></div>
+
+              <!-- Pickup Suggestions Dropdown (Progressive Disclosure) -->
+              <div class="suggestions-dropdown" id="pickupSuggestions">
+                <div class="suggestions-header">Quick Pickup Points</div>
+                <button type="button" class="suggestion-item" data-val="Bangalore City (Your Doorstep)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Bangalore City</span>
+                    <span class="sugg-sub">Any doorstep / hotel / residence</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Kempegowda International Airport (BLR)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Kempegowda Airport (BLR)</span>
+                    <span class="sugg-sub">Terminal 1 & Terminal 2 Pickups</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Indiranagar, Bangalore">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Indiranagar / MG Road</span>
+                    <span class="sugg-sub">Central Bangalore</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Electronic City, Bangalore">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Electronic City / Whitefield</span>
+                    <span class="sugg-sub">Tech Parks & South Bengaluru</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Circular Swap Button -->
+            <div class="route-swap-container">
+              <button type="button" class="route-swap-btn" id="swapLocationsBtn" title="Swap pickup and destination" aria-label="Swap pickup and destination">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+              </button>
+            </div>
+
+            <!-- Drop / Destination Location Field -->
+            <div class="booking-field-wrapper field-drop" id="dropFieldWrapper">
+              <label class="field-micro-label" for="dropLocation">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+                <span>Destination</span>
+              </label>
+              <div class="input-container">
+                <input type="text" id="dropLocation" class="hero-input" placeholder="Where are you going?" value="Mysore" required />
+                <button type="button" class="field-clear-btn" id="clearDropBtn" aria-label="Clear destination" style="display:none;">&times;</button>
+              </div>
+              <div class="field-error-msg" id="dropError"></div>
+
+              <!-- Popular Destinations Dropdown (Progressive Disclosure) -->
+              <div class="suggestions-dropdown" id="dropSuggestions">
+                <div class="suggestions-header">Popular Destinations</div>
+                <button type="button" class="suggestion-item" data-val="Mysore">
+                  <span class="sugg-badge-pop">Popular</span>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Mysore</span>
+                    <span class="sugg-sub">Heritage Gateway &amp; Palaces</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Coorg (Madikeri)">
+                  <span class="sugg-badge-pop">Popular</span>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Coorg (Madikeri)</span>
+                    <span class="sugg-sub">Coffee Highlands &amp; Hills</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Ooty">
+                  <span class="sugg-badge-pop">Popular</span>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Ooty</span>
+                    <span class="sugg-sub">Nilgiri Mountain Valleys</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Chikmagalur">
+                  <span class="sugg-badge-pop">Popular</span>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Chikmagalur</span>
+                    <span class="sugg-sub">Western Ghats &amp; Coffee Estates</span>
+                  </div>
+                </button>
+                <button type="button" class="suggestion-item" data-val="Wayanad">
+                  <span class="sugg-badge-pop">Popular</span>
+                  <div class="sugg-text">
+                    <span class="sugg-name">Wayanad</span>
+                    <span class="sugg-sub">Lush Rainforests &amp; Wildlife</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 & 3: DATE, TIME & YOUR RIDE (Compact & Balanced Row) -->
+          <div class="booking-row booking-secondary-row">
+            <!-- Travel Date -->
+            <div class="booking-field-wrapper field-date">
+              <label class="field-micro-label" for="travelDate">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span>Travel Date</span>
+              </label>
+              <div class="input-container">
+                <input type="date" id="travelDate" class="secondary-input" required />
+              </div>
+            </div>
+
+            <!-- Travel Time -->
+            <div class="booking-field-wrapper field-time">
+              <label class="field-micro-label" for="travelTimeSelect">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Pickup Time</span>
+              </label>
+              <div class="input-container">
+                <select id="travelTimeSelect" class="secondary-input select-styled">
+                  <option value="06:00 AM">06:00 AM (Early Morning)</option>
+                  <option value="07:30 AM">07:30 AM</option>
+                  <option value="09:00 AM" selected>09:00 AM (Standard)</option>
+                  <option value="10:30 AM">10:30 AM</option>
+                  <option value="12:00 PM">12:00 PM (Noon)</option>
+                  <option value="02:30 PM">02:30 PM</option>
+                  <option value="04:30 PM">04:30 PM (Evening)</option>
+                  <option value="06:00 PM">06:00 PM</option>
+                  <option value="08:00 PM">08:00 PM (Night)</option>
+                  <option value="10:00 PM">10:00 PM</option>
+                </select>
+                <input type="hidden" id="travelTime" value="09:00 AM" />
+              </div>
+            </div>
+
+            <!-- Compact Vehicle Selector -->
+            <div class="booking-field-wrapper field-vehicle" id="vehicleFieldWrapper">
+              <label class="field-micro-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C2.1 10.7 2 10.8 2 11v5c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                <span>Your Ride</span>
+              </label>
+              
+              <!-- Custom Vehicle Trigger Button -->
+              <button type="button" class="vehicle-selector-trigger" id="vehicleSelectorTrigger" aria-haspopup="listbox" aria-expanded="false">
+                <div class="veh-trigger-content">
+                  <span class="veh-trigger-name" id="selectedVehicleName">Toyota Rumion</span>
+                  <span class="veh-trigger-meta" id="selectedVehicleMeta">6–7 Pax • AC • Spacious</span>
+                </div>
+                <svg class="veh-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+
+              <!-- Hidden input to store chosen vehicle string -->
+              <input type="hidden" id="vehicleType" value="Toyota Rumion (6-7 Seater)" />
+
+              <!-- Vehicle Options Dropdown Cards -->
+              <div class="vehicle-dropdown-menu" id="vehicleDropdownMenu" role="listbox">
+                <div class="vehicle-option-card selected" data-value="Toyota Rumion (6-7 Seater)" data-name="Toyota Rumion" data-meta="6–7 Pax • AC • Spacious" data-pax="6-7" role="option">
+                  <div class="veh-card-icon">🚙</div>
+                  <div class="veh-card-details">
+                    <div class="veh-card-title">
+                      <span>Toyota Rumion</span>
+                    </div>
+                    <div class="veh-card-specs">6–7 Passengers • AC • 3+ Luggage • Supreme Comfort</div>
+                  </div>
+                  <div class="veh-card-check">✓</div>
+                </div>
+
+                <div class="vehicle-option-card" data-value="Prime Sedan (Swift Dzire / Etios)" data-name="Prime Sedan" data-meta="4 Pax • AC • Swift Dzire / Etios" data-pax="4" role="option">
+                  <div class="veh-card-icon">🚗</div>
+                  <div class="veh-card-details">
+                    <div class="veh-card-title">
+                      <span>Prime Sedan</span>
+                      <span class="veh-pill-sub">Dzire / Etios</span>
+                    </div>
+                    <div class="veh-card-specs">4 Passengers • AC • 2 Luggage • Budget Friendly</div>
+                  </div>
+                  <div class="veh-card-check">✓</div>
+                </div>
+
+                <div class="vehicle-option-card" data-value="Premium SUV (Hycross / Ertiga)" data-name="Premium SUV" data-meta="6 Pax • AC • Hycross / Ertiga" data-pax="6" role="option">
+                  <div class="veh-card-icon">🚙</div>
+                  <div class="veh-card-details">
+                    <div class="veh-card-title">
+                      <span>Premium SUV</span>
+                      <span class="veh-pill-sub">Hycross / Ertiga</span>
+                    </div>
+                    <div class="veh-card-specs">6 Passengers • AC • 3 Luggage • Modern Hybrid</div>
+                  </div>
+                  <div class="veh-card-check">✓</div>
+                </div>
+
+                <div class="vehicle-option-card" data-value="Tempo Traveller (12 to 16 Seater)" data-name="Tempo Traveller" data-meta="9–16 Pax • AC • Large Group" data-pax="9-16" role="option">
+                  <div class="veh-card-icon">🚐</div>
+                  <div class="veh-card-details">
+                    <div class="veh-card-title">
+                      <span>Tempo Traveller</span>
+                      <span class="veh-pill-sub">Group Tour</span>
+                    </div>
+                    <div class="veh-card-specs">9–16 Passengers • Pushback Seats • 8+ Luggage</div>
+                  </div>
+                  <div class="veh-card-check">✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: FARE ESTIMATE & ACTIONS (Clean visual harmony) -->
+          <div class="booking-footer-row">
+            <!-- Dynamic Fare Preview -->
+            <div class="booking-fare-preview" id="bookingFarePreview">
+              <span class="fare-preview-label">Estimated Fare</span>
+              <div class="fare-preview-price">
+                <span class="fare-number" id="previewFareAmount">Transparent Quote</span>
+              </div>
+              <span class="fare-preview-note">Customized quote based on route &amp; vehicle • Toll &amp; driver details included</span>
+            </div>
+
+            <!-- Action Buttons: Primary 'Get Fare & Book' + Secondary 'WhatsApp' -->
+            <div class="booking-actions-group">
+              <a href="#" class="btn btn-whatsapp-secondary" id="bookWhatsAppWidgetBtn" aria-label="Book via WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+
+              <button type="submit" class="btn btn-primary-book" id="getFareBtn">
+                <span>Get Fare &amp; Book</span>
+                <svg class="btn-arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Micro Trust Line (Rule 4) -->
+          <div class="booking-trust-line">
+            <span class="trust-pill-point">✓ Professional Service</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-pill-point">✓ Transparent Pricing</span>
+            <span class="trust-bullet">•</span>
+            <span class="trust-pill-point">✓ Easy Support</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Sticky Bottom Booking Bar -->
+  <aside class="mobile-sticky-booking-bar" id="mobileStickyBar" aria-label="Quick Booking Bar">
+    <div class="sticky-bar-content">
+      <div class="sticky-route-info">
+        <div class="sticky-route-title" id="stickyRouteSummary">Bangalore → Mysore</div>
+        <div class="sticky-fare-tag" id="stickyFareSummary">Transparent Pricing</div>
+      </div>
+      <button type="button" class="btn btn-primary-book btn-sm sticky-book-btn" onclick="document.getElementById('bookingWidget').scrollIntoView({behavior: 'smooth'})">
+        <span>Get Fare &amp; Book</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       1. SERVICES SECTION (Soft Mist Background, Crisp White Cards, Teal Icons)
+       ========================================================================== -->
+  <section class="section section-soft-blue reveal-on-scroll" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Comprehensive Solutions</span>
+        <h2 class="section-title">Cab Services for Every Journey</h2>
+        <p class="section-desc">From daily airport runs to cross-state family vacations, our private fleet offers punctuality, comfort, and transparent pricing.</p>
+      </div>
+      <div class="services-grid" id="servicesContainer">
+        <!-- Rendered dynamically by main.js from businessConfig.services -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       2. POPULAR DESTINATIONS SECTION (Warm Ivory Background, Authentic Photography)
+       ========================================================================== -->
+  <section class="section section-ivory reveal-on-scroll" id="destinations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">South India Getaways</span>
+        <h2 class="section-title">Explore Popular Destinations</h2>
+        <p class="section-desc">Experience breathtaking hill stations, regal palaces, and pristine coastal highways with our experienced chauffeurs.</p>
+      </div>
+      <div class="destinations-grid" id="destinationsContainer">
+        <!-- Rendered dynamically by main.js from businessConfig.destinations -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
+       3. OUR FLEET SECTION (White Background, Choose Your Ride)
+       ========================================================================== -->
+  <section class="section section-white reveal-on-scroll" id="fleet">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Clean &amp; Well-Maintained</span>
+        <h2 class="section-title">Choose Your Ride</h2>
+        <p class="section-desc">Featuring our authentic client-owned Toyota Rumion alongside comfortable sedans and tour minibuses.</p>
+      </div>
+      <div class="fleet-grid" id="fleetContainer">
+        <!-- Rendered dynamically by main.js from businessConfig.fleet -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. TOUR PACKAGES SECTION (Warm Ivory Background, Explore Our Tours)
+       ========================================================================== -->
+  <section class="section section-ivory reveal-on-scroll" id="tours">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Curated Holiday Experiences</span>
+        <h2 class="section-title">Explore Our Tours</h2>
+        <p class="section-desc">Handpicked South Indian holiday itineraries covering sightseeing, local landmarks, and dedicated chauffeur service.</p>
+      </div>
+      <div class="tours-grid" id="toursContainer">
+        <!-- Rendered dynamically by main.js from businessConfig.tours -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CUSTOMER REVIEWS SECTION (Clean White Background, Verified Feedback)
+       ========================================================================== -->
+  <section class="section section-white reveal-on-scroll" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Verified Passenger Feedback</span>
+        <h2 class="section-title">Customer Reviews</h2>
+        <p class="section-desc">Share your experience with Shashank Tours &amp; Travels.</p>
+        <div class="reviews-header-actions">
+          <button type="button" class="btn btn-primary" id="openReviewModalBtn" aria-haspopup="dialog" aria-controls="reviewModalOverlay">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>Write a Review</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Container dynamically populated from GET /api/reviews -->
+      <div class="testimonials-grid" id="reviewsContainer">
+        <!-- Rendered dynamically by main.js from API (Approved Reviews or Empty State) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. WHY CHOOSE US SECTION (Soft Mist Background, 4 Clean Factual Cards)
+       ========================================================================== -->
+  <section class="section section-soft-blue reveal-on-scroll" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">The Shashank Advantage</span>
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-desc">Every trip is backed by professional chauffeurs, spotless vehicles, and our commitment to your safety and comfort.</p>
+      </div>
+      <div class="why-grid" id="whyUsContainer">
+        <!-- Rendered dynamically by main.js from businessConfig.whyChooseUs (4 cards) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       HOW IT WORKS SECTION
+       ========================================================================== -->
+  <section class="section section-ivory reveal-on-scroll" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Simple 3-Step Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-desc">Booking your cab or holiday tour with Shashank Tours &amp; Travels is fast, transparent, and hassle-free.</p>
+      </div>
+      <div class="how-it-works-grid" id="howItWorksContainer">
+        <!-- Rendered dynamically by main.js from howItWorksSteps -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTACT & SUPPORT SYSTEM (Phase 12: Real Backend-Connected Form)
+       ========================================================================== -->
+  <section class="contact-section-wrapper" id="contact">
+    <div class="container">
+      <div class="section-header contact-header">
+        <span class="section-badge contact-badge">Get In Touch</span>
+        <h2 class="section-title contact-title">Contact Shashank Tours &amp; Travels</h2>
+        <p class="section-desc contact-desc">Have custom route inquiries, corporate travel requests, or urgent cab requirements? Reach out directly or send us a message below.</p>
+      </div>
+
+      <div class="contact-grid-layout">
+        <!-- Left: Quick Direct Channels -->
+        <div class="contact-info-panel">
+          <div>
+            <h3>24/7 Dedicated Support</h3>
+            <p>Our fleet operates round-the-clock across Karnataka, Tamil Nadu, and Kerala. Reach our travel coordinator immediately through any of our official channels.</p>
+          </div>
+
+          <div class="contact-quick-list">
+            <a href="tel:918904216594" class="contact-quick-item" data-company-phone>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div>
+                <strong style="display:block; font-size:0.95rem;">Direct Phone</strong>
+                <span class="contact-quick-meta">+91 89042 16594</span>
+              </div>
+            </a>
+
+            <a href="https://wa.me/918904216594?text=Hello%20Shashank%20Tours%20and%20Travels,%20I%20have%20an%20enquiry%20regarding%20cab%20booking" target="_blank" rel="noopener noreferrer" class="contact-quick-item" data-company-wa>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <div>
+                <strong style="display:block; font-size:0.95rem;">WhatsApp Booking &amp; Support</strong>
+                <span class="contact-quick-meta">+91 89042 16594 (Instant Response)</span>
+              </div>
+            </a>
+
+            <a href="mailto:shashanktoursandtravels23@gmail.com" class="contact-quick-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E7A52B" stroke-width="2.2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <div>
+                <strong style="display:block; font-size:0.95rem;">Email Inquiry</strong>
+                <span class="contact-quick-meta">shashanktoursandtravels23@gmail.com</span>
+              </div>
+            </a>
+
+            <div class="contact-quick-item" style="cursor:default;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#78B4BE" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <strong style="display:block; font-size:0.95rem;">Operating Hub</strong>
+                <span class="contact-quick-meta">Bengaluru, Karnataka (Doorstep pickups across South India)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Functional Contact Form (Connected to POST /api/contact) -->
+        <div class="contact-form-panel">
+          <h4>Send an Inquiry</h4>
+          <p>Fill out the form below and our coordinator will respond with quotation and chauffeur details.</p>
+
+          <div class="form-alert" id="contactFormAlert"></div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label" for="contactName" style="color:inherit; font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Your Name *</label>
+              <input type="text" id="contactName" name="name" class="form-control" placeholder="Enter your full name" required style="width:100%; padding:12px 14px; border:1px solid var(--color-border); border-radius:var(--radius-input); background:var(--surface); color:inherit;" />
+            </div>
+
+            <div class="contact-form-row-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+              <div class="form-group">
+                <label class="form-label" for="contactPhone" style="color:inherit; font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Phone Number *</label>
+                <input type="tel" id="contactPhone" name="phone" class="form-control" placeholder="10-digit mobile number" required style="width:100%; padding:12px 14px; border:1px solid var(--color-border); border-radius:var(--radius-input); background:var(--surface); color:inherit;" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail" style="color:inherit; font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Email Address</label>
+                <input type="email" id="contactEmail" name="email" class="form-control" placeholder="name@example.com (optional)" style="width:100%; padding:12px 14px; border:1px solid var(--color-border); border-radius:var(--radius-input); background:var(--surface); color:inherit;" />
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:20px;">
+              <label class="form-label" for="contactMessage" style="color:inherit; font-weight:600; font-size:0.88rem; display:block; margin-bottom:6px;">Message or Travel Requirements *</label>
+              <textarea id="contactMessage" name="message" rows="4" class="form-control" placeholder="Describe your travel dates, route, vehicle preference, or any special questions..." required style="width:100%; padding:12px 14px; border:1px solid var(--color-border); border-radius:var(--radius-input); background:var(--surface); color:inherit; font-family:inherit; resize:vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="contactSubmitBtn" style="width:100%; padding:14px; font-weight:700; display:flex; justify-content:center; align-items:center; gap:8px;">
+              <span>Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER (Clean 4-Column Layout, Factual Content, No Fake Social Links)
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand -->
+        <div class="footer-col">
+          <div class="logo" style="margin-bottom: 16px;">
+            <div class="logo-icon" aria-hidden="true" style="background: var(--color-white); color: var(--color-primary); font-weight: 800;">S</div>
+            <div class="logo-text">SHASHANK <span>TOURS</span></div>
+          </div>
+          <p class="footer-about-text">
+            Reliable cab and tour service operating across Karnataka and South India. Professional chauffeurs, clean vehicles, and transparent travel coordination.
+          </p>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Airport Transfers</a></li>
+            <li><a href="#services">Local Hourly Rental</a></li>
+            <li><a href="#services">Outstation One-Way</a></li>
+            <li><a href="#services">Round-Trip Holidays</a></li>
+            <li><a href="#tours">Tour Packages</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Destinations -->
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul class="footer-links">
+            <li><a href="#destinations">Mysore</a></li>
+            <li><a href="#destinations">Coorg</a></li>
+            <li><a href="#destinations">Ooty</a></li>
+            <li><a href="#destinations">Chikmagalur</a></li>
+            <li><a href="#destinations">Wayanad</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+91 89042 16594</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span>+91 89042 16594 (WhatsApp)</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>shashanktoursandtravels23@gmail.com</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Bengaluru, Karnataka</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>© 2026 Shashank Tours &amp; Travels. All Rights Reserved.</div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Cancellation Policy</a>
+          <a href="/admin.html" style="font-weight:700; color:var(--color-secondary);">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       FLOATING ACTION BUTTONS
+       ========================================================================== -->
+  <!-- Desktop Floating Buttons -->
+  <div class="desktop-floating-actions">
+    <a href="#" class="floating-btn floating-btn-wa" data-company-wa aria-label="Chat on WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="tel:918904216594" class="floating-btn floating-btn-call" data-company-phone aria-label="Call Direct">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call Us</span>
+    </a>
+  </div>
+
+  <!-- Mobile Fixed Bottom Action Bar (Safe-Area Aware) -->
+  <div class="mobile-bottom-bar">
+    <a href="tel:918904216594" class="mobile-bar-call" data-company-phone>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call</span>
+    </a>
+    <a href="#" class="mobile-bar-whatsapp" data-company-wa>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <button class="mobile-bar-book" onclick="document.getElementById('bookingWidget').scrollIntoView({behavior: 'smooth'})">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg>
+      <span>Book</span>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       BOOKING MODAL (Honest Request & Confirmation Screen)
+       ========================================================================== -->
+  <div class="modal-overlay" id="bookingModalOverlay">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close Modal">✕</button>
+      
+      <!-- Main Modal Step: Details & Customer Info -->
+      <div id="modalMainContent">
+        <div class="modal-header">
+          <span class="section-badge" style="margin-bottom:8px;">Booking Request</span>
+          <h3 class="modal-title">Review Your Journey</h3>
+          <p class="modal-desc">Share your contact information to receive your transparent fare quote and chauffeur confirmation.</p>
+        </div>
+
+        <!-- Trip Summary Breakdown -->
+        <div class="booking-summary-box">
+          <div class="summary-row">
+            <span class="summary-label">Trip Type:</span>
+            <span class="summary-value" id="summaryTripType">One Way</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Pickup:</span>
+            <span class="summary-value" id="summaryPickup">Bangalore Airport</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Destination:</span>
+            <span class="summary-value" id="summaryDrop">Mysore</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Date &amp; Time:</span>
+            <span class="summary-value" id="summaryDateTime">Tomorrow at 09:00 AM</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Selected Cab:</span>
+            <span class="summary-value" id="summaryVehicle">Toyota Rumion</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Fare Estimate:</span>
+            <span class="summary-value accent" id="summaryEstFare">Transparent Quote</span>
+          </div>
+        </div>
+
+        <!-- Customer Contact Form -->
+        <form class="modal-form" id="modalConfirmForm">
+          <div class="form-group">
+            <label class="form-label" for="custName">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Full Name
+            </label>
+            <input type="text" id="custName" placeholder="Enter your full name" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="custPhone">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Phone / WhatsApp Number
+            </label>
+            <input type="tel" id="custPhone" placeholder="10-digit mobile number" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="custNotes">
+              Special Requests (Optional)
+            </label>
+            <input type="text" id="custNotes" placeholder="e.g. Flight number, extra luggage space" />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-whatsapp" id="modalWhatsAppBtn" style="flex:1;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <span>Request via WhatsApp</span>
+            </button>
+            <button type="submit" class="btn btn-primary" style="flex:1;">
+              <span>Submit Request</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Success Screen: Rule 20 Request Received -->
+      <div id="modalSuccessContent" class="confirmation-success" style="display:none;">
+        <div class="success-check-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="success-title">Request Received</h3>
+        <p class="success-desc">
+          We've received your cab request. Our team will verify chauffeur availability and connect with you right away.
+        </p>
+
+        <!-- Rule 20 Summary Breakdown -->
+        <div class="booking-summary-box" style="text-align:left; margin: 20px 0;">
+          <div class="summary-row">
+            <span class="summary-label">Pickup:</span>
+            <span class="summary-value" id="confirmedPickup">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Destination:</span>
+            <span class="summary-value" id="confirmedDrop">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Date:</span>
+            <span class="summary-value" id="confirmedDate">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Time:</span>
+            <span class="summary-value" id="confirmedTime">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Vehicle:</span>
+            <span class="summary-value" id="confirmedVehicle">—</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="#" class="btn btn-whatsapp" id="confirmedWhatsAppBtn" data-company-wa>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Continue on WhatsApp</span>
+          </a>
+          <a href="tel:918904216594" class="btn btn-outline" data-company-phone>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Call Us</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CUSTOMER REVIEW SUBMISSION MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="reviewModalOverlay" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="closeReviewModalBtn" aria-label="Close Review Modal">✕</button>
+
+      <div class="modal-header">
+        <span class="section-badge" style="margin-bottom:8px;">Passenger Feedback</span>
+        <h3 class="modal-title" id="reviewModalTitle">Write a Review</h3>
+        <p class="modal-desc">Share your honest travel experience with Shashank Tours &amp; Travels. Every review is verified before publishing.</p>
+      </div>
+
+      <div class="form-alert" id="reviewAlertBox" role="alert" style="display:none;"></div>
+
+      <form class="modal-form" id="customerReviewForm" novalidate>
+        <!-- Honeypot anti-spam field -->
+        <div style="display:none;" aria-hidden="true">
+          <input type="text" name="botCheck" id="reviewBotCheck" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Rating (1-5 Stars) -->
+        <div class="form-group">
+          <label class="form-label" id="starRatingLabel">
+            Rating <span style="color:#E02424;">*</span>
+          </label>
+          <div class="star-rating-select" id="starRatingSelector" role="radiogroup" aria-labelledby="starRatingLabel">
+            <button type="button" class="rating-star-btn active" data-star="1" role="radio" aria-checked="false" aria-label="1 star">★</button>
+            <button type="button" class="rating-star-btn active" data-star="2" role="radio" aria-checked="false" aria-label="2 stars">★</button>
+            <button type="button" class="rating-star-btn active" data-star="3" role="radio" aria-checked="false" aria-label="3 stars">★</button>
+            <button type="button" class="rating-star-btn active" data-star="4" role="radio" aria-checked="false" aria-label="4 stars">★</button>
+            <button type="button" class="rating-star-btn active" data-star="5" role="radio" aria-checked="true" aria-label="5 stars">★</button>
+          </div>
+          <input type="hidden" id="reviewRatingInput" name="rating" value="5" />
+          <span class="field-help" id="ratingTextDesc" style="font-size:0.82rem; color:var(--color-muted); margin-top:4px; display:block;">5 Stars — Excellent Service</span>
+        </div>
+
+        <!-- Customer Name -->
+        <div class="form-group">
+          <label class="form-label" for="reviewCustomerName">
+            Customer Name <span style="color:#E02424;">*</span>
+          </label>
+          <input type="text" class="modal-input" id="reviewCustomerName" name="customerName" placeholder="Enter your full name" required minlength="2" maxlength="100" />
+          <div class="field-error-msg" id="reviewNameError" style="display:none; color:#E02424; font-size:0.82rem; margin-top:4px;"></div>
+        </div>
+
+        <!-- Review / Experience -->
+        <div class="form-group">
+          <label class="form-label" for="reviewText">
+            Review / Experience <span style="color:#E02424;">*</span>
+          </label>
+          <textarea class="modal-textarea" id="reviewText" name="reviewText" rows="4" placeholder="Describe your trip, vehicle cleanliness, driver punctuality, or tour comfort..." required minlength="10" maxlength="1500"></textarea>
+          <div class="field-error-msg" id="reviewTextError" style="display:none; color:#E02424; font-size:0.82rem; margin-top:4px;"></div>
+        </div>
+
+        <!-- Optional Trip / Service -->
+        <div class="form-group">
+          <label class="form-label" for="reviewService">
+            Trip or Service Taken <span style="font-size:0.8rem; color:var(--color-muted); font-weight:normal;">(Optional)</span>
+          </label>
+          <input type="text" class="modal-input" id="reviewService" name="service" placeholder="e.g. Bangalore to Coorg Round Trip / Prime Sedan" maxlength="100" />
+        </div>
+
+        <!-- Optional Email -->
+        <div class="form-group">
+          <label class="form-label" for="reviewEmail">
+            Email Address <span style="font-size:0.8rem; color:var(--color-muted); font-weight:normal;">(Optional — kept private, never published)</span>
+          </label>
+          <input type="email" class="modal-input" id="reviewEmail" name="email" placeholder="e.g. yourname@example.com" maxlength="150" />
+          <div class="field-error-msg" id="reviewEmailError" style="display:none; color:#E02424; font-size:0.82rem; margin-top:4px;"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="modal-actions" style="margin-top:20px;">
+          <button type="submit" class="btn btn-primary" id="submitReviewBtn" style="width:100%; justify-content:center; height:50px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+            <span id="submitReviewBtnText">Submit Review</span>
+          </button>
+        </div>
+
+        <p style="font-size:0.78rem; color:var(--color-muted); text-align:center; margin-top:12px; line-height:1.4;">
+          🔒 Moderation policy: Submissions are reviewed to prevent spam before being published. Your email is never displayed publicly.
+        </p>
+      </form>
+    </div>
+  </div>
+
+
+
+  <!-- GSAP Animation Suite (Local high-performance bundle) -->
+  <script src="/js/gsap.min.js"></script>
+  <script src="/js/ScrollTrigger.min.js"></script>
+  <script src="/js/MotionPathPlugin.min.js"></script>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
