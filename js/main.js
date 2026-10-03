@@ -1669,9 +1669,10 @@ window.setQuickLocation = function(type, loc) {
 };
 
 function setupQuickActionLinks() {
-  // Update all phone and whatsapp raw hrefs dynamically
+  // Update all phone and whatsapp raw hrefs dynamically using single source of truth
+  const telNumber = companyInfo.phoneTel || (companyInfo.phoneRaw.startsWith('+') ? companyInfo.phoneRaw : `+${companyInfo.phoneRaw}`);
   document.querySelectorAll('[data-company-phone]').forEach(el => {
-    el.href = `tel:${companyInfo.phoneRaw}`;
+    el.href = `tel:${telNumber}`;
   });
   document.querySelectorAll('[data-company-wa]').forEach(el => {
     el.href = `https://wa.me/${companyInfo.whatsappRaw}?text=${encodeURIComponent('Hello ' + companyInfo.name + ', I would like to enquire about cab booking and outstation tour packages.')}`;

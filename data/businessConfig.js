@@ -9,6 +9,7 @@ export const businessConfig = {
     shortDesc: "Reliable cab services for airport transfers, local city travel, outstation journeys, and memorable tours across South India.",
     phone: "+91 87478 29020",
     phoneDisplay: "+91 87478 29020",
+    phoneTel: "+918747829020",
     phoneRaw: "918747829020",
     whatsapp: "+91 87478 29020",
     whatsappRaw: "918747829020",
