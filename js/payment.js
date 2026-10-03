@@ -1,6 +1,7 @@
 // Official UPI Payment System for Shashank Tours & Travels
-// NPCI UPI Deep-link & Dynamic QR compliant
-// Recipient: +91 87478 29020 | Configurable UPI ID via VITE_UPI_ID
+// NPCI UPI Deep-link & Dynamic Live QR compliant
+// Merchant UPI ID configurable via VITE_UPI_ID in .env
+// Merchant Receiver Phone: +91 87478 29020
 
 import QRCode from 'qrcode';
 import { paymentInfo, companyInfo } from '../data/company.js';
@@ -9,12 +10,12 @@ let paymentModalState = {
   amount: 0,
   reference: '',
   bookingId: '',
-  customerName: '',
-  customerPhone: '',
-  status: 'idle', // 'idle' | 'amount' | 'paying' | 'initiated' | 'cancelled'
-  utr: '',
+  status: 'entry', // 'entry' | 'initiating' | 'initiated'
   activeTab: 'dynamic' // 'dynamic' | 'static'
 };
+
+// Debounce timer for dynamic QR generation
+let qrDebounceTimer = null;
 
 /**
  * Initialize payment system listeners and section triggers
@@ -28,7 +29,7 @@ export function initPaymentSystem() {
  * Setup clickable payment triggers across the page (Section, nav links, etc.)
  */
 function setupSectionTriggers() {
-  // Pay Now buttons
+  // Pay Now buttons across site
   document.querySelectorAll('[data-action="open-payment-modal"]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
@@ -60,48 +61,48 @@ export function openPaymentModal(options = {}) {
   const overlay = document.getElementById('paymentModalOverlay');
   if (!overlay) return;
 
-  // Reset or initialize state
+  const initialAmount = options.amount ? parseFloat(options.amount) : 0;
+
   paymentModalState = {
-    amount: options.amount ? parseFloat(options.amount) : 0,
+    amount: initialAmount > 0 ? initialAmount : 0,
     reference: options.reference || (options.bookingId ? `Booking #${options.bookingId}` : ''),
     bookingId: options.bookingId || '',
-    customerName: options.customerName || '',
-    customerPhone: options.customerPhone || '',
-    status: 'amount',
-    utr: '',
+    status: 'entry',
     activeTab: 'dynamic'
   };
 
-  // Populate initial inputs
   const amountInput = document.getElementById('payModalAmountInput');
-  const refInput = document.getElementById('payModalRefInput');
   const errorEl = document.getElementById('payModalAmountError');
+  const mainPanel = document.getElementById('payMainPanel');
+  const statusPanel = document.getElementById('payStatusPanel');
+
+  if (mainPanel) mainPanel.style.display = 'block';
+  if (statusPanel) statusPanel.style.display = 'none';
 
   if (amountInput) {
-    amountInput.value = paymentModalState.amount > 0 ? paymentModalState.amount : '';
-  }
-  if (refInput) {
-    refInput.value = paymentModalState.reference || '';
+    amountInput.value = initialAmount > 0 ? initialAmount : '';
   }
   if (errorEl) {
     errorEl.style.display = 'none';
     errorEl.textContent = '';
   }
 
-  // If amount was already provided and valid, proceed directly to pay screen
-  if (paymentModalState.amount > 0) {
-    showPayScreen();
-  } else {
-    showAmountScreen();
-  }
+  // Update dynamic button text (e.g. "Pay ₹500" or "Pay Now")
+  updateDynamicPayButton();
+
+  // Render initial dynamic QR code
+  renderLiveQRCode();
 
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Focus amount input
+  // Focus amount input for rapid entry
   setTimeout(() => {
-    if (amountInput && paymentModalState.amount <= 0) {
+    if (amountInput) {
       amountInput.focus();
+      if (amountInput.value) {
+        amountInput.select();
+      }
     }
   }, 100);
 }
@@ -123,9 +124,9 @@ export function closePaymentModal() {
 function setupPaymentModalDOM() {
   const overlay = document.getElementById('paymentModalOverlay');
   const closeBtn = document.getElementById('closePayModalBtn');
-  const amountForm = document.getElementById('payAmountForm');
-  const btnContinue = document.getElementById('btnContinueToPay');
   const amountInput = document.getElementById('payModalAmountInput');
+  const payBtn = document.getElementById('btnPayAmount');
+  const payForm = document.getElementById('payQuickForm');
 
   // Close triggers
   if (closeBtn) {
@@ -144,44 +145,52 @@ function setupPaymentModalDOM() {
     }
   });
 
-  // Preset chips
+  // Real-time input listener: dynamically updates button text and dynamic QR code
+  if (amountInput) {
+    amountInput.addEventListener('input', () => {
+      clearAmountError();
+      updateDynamicPayButton();
+
+      // Debounce QR regeneration for performance
+      clearTimeout(qrDebounceTimer);
+      qrDebounceTimer = setTimeout(() => {
+        renderLiveQRCode();
+      }, 150);
+    });
+
+    amountInput.addEventListener('keypress', (e) => {
+      // Allow only numbers and decimal point
+      if (!/[\d.]/.test(e.key) && e.key !== 'Enter') {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Preset chips (₹100, ₹500, ₹1000, ₹5000)
   document.querySelectorAll('.pay-preset-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const val = chip.getAttribute('data-value');
       if (amountInput) {
         amountInput.value = val;
-        amountInput.dispatchEvent(new Event('input'));
         clearAmountError();
+        updateDynamicPayButton();
+        renderLiveQRCode();
+        amountInput.focus();
       }
     });
   });
 
-  // Live input validation on amount
-  if (amountInput) {
-    amountInput.addEventListener('input', () => {
-      clearAmountError();
-    });
-  }
-
-  // Continue to Pay submit
-  if (amountForm) {
-    amountForm.addEventListener('submit', (e) => {
+  // Submit / Pay Button click
+  if (payBtn) {
+    payBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      handleAmountSubmit();
+      executeUPIPayment();
     });
   }
-  if (btnContinue) {
-    btnContinue.addEventListener('click', (e) => {
+  if (payForm) {
+    payForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      handleAmountSubmit();
-    });
-  }
-
-  // Back to Amount button
-  const backToAmountBtn = document.getElementById('payModalBackToAmount');
-  if (backToAmountBtn) {
-    backToAmountBtn.addEventListener('click', () => {
-      showAmountScreen();
+      executeUPIPayment();
     });
   }
 
@@ -193,74 +202,37 @@ function setupPaymentModalDOM() {
       navigator.clipboard.writeText(upiId).then(() => {
         const originalText = copyUpiBtn.innerHTML;
         copyUpiBtn.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <span>Copied!</span>
         `;
         copyUpiBtn.classList.add('copied');
         setTimeout(() => {
           copyUpiBtn.innerHTML = originalText;
           copyUpiBtn.classList.remove('copied');
-        }, 2500);
+        }, 2200);
       }).catch(() => {
-        prompt('Copy UPI ID:', upiId);
+        prompt('Merchant UPI ID:', upiId);
       });
     });
   }
 
-  // Mobile UPI Launch Buttons
-  const universalUpiBtn = document.getElementById('btnPayUniversalUpi');
-  if (universalUpiBtn) {
-    universalUpiBtn.addEventListener('click', () => {
-      launchUPIIntent('');
-    });
-  }
+  // Toggle Fallback Static QR
+  const toggleStaticBtn = document.getElementById('toggleStaticQrBtn');
+  const staticQrWrapper = document.getElementById('staticQrFallbackWrapper');
+  const dynamicQrWrapper = document.getElementById('dynamicQrMainWrapper');
 
-  // App-specific UPI Buttons
-  document.querySelectorAll('[data-upi-scheme]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const scheme = btn.getAttribute('data-upi-scheme');
-      launchUPIIntent(scheme);
-    });
-  });
-
-  // Fallback QR Tabs (Dynamic vs Static PhonePe)
-  const tabDynamic = document.getElementById('qrTabDynamic');
-  const tabStatic = document.getElementById('qrTabStatic');
-  const dynamicView = document.getElementById('qrViewDynamic');
-  const staticView = document.getElementById('qrViewStatic');
-
-  if (tabDynamic && tabStatic) {
-    tabDynamic.addEventListener('click', () => {
-      tabDynamic.classList.add('active');
-      tabStatic.classList.remove('active');
-      if (dynamicView) dynamicView.style.display = 'block';
-      if (staticView) staticView.style.display = 'none';
-      paymentModalState.activeTab = 'dynamic';
-    });
-
-    tabStatic.addEventListener('click', () => {
-      tabStatic.classList.add('active');
-      tabDynamic.classList.remove('active');
-      if (dynamicView) dynamicView.style.display = 'none';
-      if (staticView) staticView.style.display = 'block';
-      paymentModalState.activeTab = 'static';
-    });
-  }
-
-  // "I have completed payment" button
-  const btnCompleted = document.getElementById('btnPayCompleted');
-  if (btnCompleted) {
-    btnCompleted.addEventListener('click', () => {
-      showInitiatedScreen();
-    });
-  }
-
-  // "Cancel / Retry" button
-  const btnRetry = document.getElementById('btnPayRetry');
-  if (btnRetry) {
-    btnRetry.addEventListener('click', () => {
-      paymentModalState.status = 'cancelled';
-      showAmountScreen();
+  if (toggleStaticBtn && staticQrWrapper && dynamicQrWrapper) {
+    toggleStaticBtn.addEventListener('click', () => {
+      const isStatic = staticQrWrapper.style.display !== 'none';
+      if (isStatic) {
+        staticQrWrapper.style.display = 'none';
+        dynamicQrWrapper.style.display = 'block';
+        toggleStaticBtn.textContent = 'View Counter PhonePe QR';
+      } else {
+        staticQrWrapper.style.display = 'block';
+        dynamicQrWrapper.style.display = 'none';
+        toggleStaticBtn.textContent = 'Switch to Dynamic Amount QR';
+      }
     });
   }
 
@@ -272,23 +244,150 @@ function setupPaymentModalDOM() {
     });
   }
 
-  // Done / Close button on status screen
+  // Status Screen - Done / Close button
   const btnDoneClose = document.getElementById('btnDoneClosePayment');
   if (btnDoneClose) {
     btnDoneClose.addEventListener('click', () => {
       closePaymentModal();
     });
   }
+
+  // Status Screen - Retry / Change button
+  const btnRetry = document.getElementById('btnRetryPayment');
+  if (btnRetry) {
+    btnRetry.addEventListener('click', () => {
+      const mainPanel = document.getElementById('payMainPanel');
+      const statusPanel = document.getElementById('payStatusPanel');
+      if (mainPanel) mainPanel.style.display = 'block';
+      if (statusPanel) statusPanel.style.display = 'none';
+      if (amountInput) amountInput.focus();
+    });
+  }
 }
 
 /**
- * Validate customer amount and transition to Pay screen
+ * Format currency in Indian Rupees
  */
-function handleAmountSubmit() {
+export function formatINR(val) {
+  const num = parseFloat(val);
+  if (isNaN(num)) return '₹0';
+  // If whole number, format without cents, else include decimals
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 2,
+    minimumFractionDigits: num % 1 === 0 ? 0 : 2
+  }).format(num);
+}
+
+/**
+ * Update the dynamic payment button text: e.g. "Pay ₹500"
+ */
+function updateDynamicPayButton() {
   const amountInput = document.getElementById('payModalAmountInput');
-  const refInput = document.getElementById('payModalRefInput');
+  const payBtn = document.getElementById('btnPayAmount');
+  if (!payBtn) return;
+
+  const rawVal = amountInput ? amountInput.value.trim() : '';
+  const parsed = parseFloat(rawVal);
+
+  if (!rawVal || isNaN(parsed) || parsed <= 0) {
+    paymentModalState.amount = 0;
+    payBtn.innerHTML = `
+      <span>Pay Now</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    `;
+  } else {
+    paymentModalState.amount = parsed;
+    const formatted = formatINR(parsed);
+    payBtn.innerHTML = `
+      <span>Pay ${formatted}</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    `;
+  }
+}
+
+/**
+ * Construct standard NPCI UPI URI with exact merchant ID and entered amount
+ */
+export function buildUpiUri(amountVal = 0, scheme = '') {
+  const pa = paymentInfo.upiId;
+  const pn = encodeURIComponent(paymentInfo.merchantName);
+  const note = encodeURIComponent(
+    paymentModalState.reference ||
+    (paymentModalState.bookingId ? `Booking ${paymentModalState.bookingId}` : 'Travel Payment')
+  );
+
+  let baseParams = `pa=${pa}&pn=${pn}&cu=INR&tn=${note}&mode=02&purpose=00`;
+
+  // Append amount only if valid positive amount provided
+  if (amountVal && amountVal > 0) {
+    baseParams += `&am=${amountVal.toFixed(2)}`;
+  }
+
+  if (!scheme) {
+    return `upi://pay?${baseParams}`;
+  }
+
+  switch (scheme.toLowerCase()) {
+    case 'gpay':
+      return `gpay://upi/pay?${baseParams}`;
+    case 'phonepe':
+      return `phonepe://upi/pay?${baseParams}`;
+    case 'paytm':
+      return `paytmmp://pay?${baseParams}`;
+    case 'bhim':
+      return `bhim://pay?${baseParams}`;
+    default:
+      return `upi://pay?${baseParams}`;
+  }
+}
+
+/**
+ * Render dynamic QR code onto canvas matching the current entered amount
+ */
+async function renderLiveQRCode() {
+  const canvas = document.getElementById('dynamicQrCanvas');
+  if (!canvas) return;
+
+  const currentAmount = paymentModalState.amount > 0 ? paymentModalState.amount : 0;
+  const upiUri = buildUpiUri(currentAmount);
+
+  // Update amount badge under QR
+  const qrAmountLabel = document.getElementById('qrLiveAmountLabel');
+  if (qrAmountLabel) {
+    if (currentAmount > 0) {
+      qrAmountLabel.textContent = `for ${formatINR(currentAmount)}`;
+    } else {
+      qrAmountLabel.textContent = `(Enter amount above)`;
+    }
+  }
+
+  try {
+    await QRCode.toCanvas(canvas, upiUri, {
+      width: 200,
+      margin: 1,
+      color: {
+        dark: '#123B4A', // Brand Deep Petrol Blue
+        light: '#FFFFFF'
+      },
+      errorCorrectionLevel: 'M'
+    });
+  } catch (err) {
+    console.warn('QR Code generation error:', err);
+  }
+}
+
+/**
+ * Execute UPI Payment
+ * Triggers universal UPI intent with Amount and configured Merchant UPI ID
+ */
+function executeUPIPayment() {
+  const amountInput = document.getElementById('payModalAmountInput');
+  const payBtn = document.getElementById('btnPayAmount');
   const rawValue = (amountInput ? amountInput.value : '').trim();
 
+  // 1. Validation
   if (!rawValue) {
     showAmountError('Please enter the payment amount.');
     return;
@@ -296,7 +395,7 @@ function handleAmountSubmit() {
 
   const parsedAmount = parseFloat(rawValue);
 
-  if (isNaN(parsedAmount)) {
+  if (isNaN(parsedAmount) || !isFinite(parsedAmount)) {
     showAmountError('Please enter a valid numeric amount.');
     return;
   }
@@ -307,16 +406,41 @@ function handleAmountSubmit() {
   }
 
   if (parsedAmount < 1) {
-    showAmountError('Minimum payment amount is ₹1.00.');
+    showAmountError('Minimum payment amount is ₹1.');
     return;
   }
 
-  // Format to 2 decimal places maximum
+  // Validated amount
   const validatedAmount = Math.round(parsedAmount * 100) / 100;
   paymentModalState.amount = validatedAmount;
-  paymentModalState.reference = refInput ? refInput.value.trim() : '';
 
-  showPayScreen();
+  // 2. Prevent duplicate clicks & show initiating indicator
+  if (payBtn) {
+    payBtn.disabled = true;
+    payBtn.innerHTML = `
+      <span>Initiating UPI Payment...</span>
+    `;
+  }
+
+  // 3. Build universal UPI URI containing configured merchant UPI ID and amount
+  const upiUri = buildUpiUri(validatedAmount);
+
+  // 4. Launch official UPI payment deep-link intent
+  // On mobile (Android & iOS), this triggers the OS app chooser with Google Pay, PhonePe, Paytm, BHIM, etc.
+  try {
+    window.location.href = upiUri;
+  } catch (e) {
+    console.warn('Deep link launch note:', e);
+  }
+
+  // 5. Transition to honest initiated status screen after a brief delay
+  setTimeout(() => {
+    showInitiatedScreen(validatedAmount);
+    if (payBtn) {
+      payBtn.disabled = false;
+      updateDynamicPayButton();
+    }
+  }, 1000);
 }
 
 function showAmountError(msg) {
@@ -345,191 +469,32 @@ function clearAmountError() {
 }
 
 /**
- * Display the Amount Entry Step
- */
-function showAmountScreen() {
-  paymentModalState.status = 'amount';
-  const stepAmount = document.getElementById('payStepAmount');
-  const stepPay = document.getElementById('payStepPay');
-  const stepStatus = document.getElementById('payStepStatus');
-
-  if (stepAmount) stepAmount.style.display = 'block';
-  if (stepPay) stepPay.style.display = 'none';
-  if (stepStatus) stepStatus.style.display = 'none';
-
-  const titleEl = document.getElementById('payModalHeaderTitle');
-  if (titleEl) titleEl.textContent = 'Make a Payment';
-}
-
-/**
- * Format Indian Rupee currency with standard comma separators
- */
-export function formatINR(amount) {
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 2
-  }).format(amount);
-}
-
-/**
- * Construct standard NPCI UPI URI
- */
-export function buildUpiUri(scheme = '') {
-  const pa = paymentInfo.upiId;
-  const pn = encodeURIComponent(paymentInfo.merchantName);
-  const am = paymentModalState.amount.toFixed(2);
-  const cu = 'INR';
-  const note = encodeURIComponent(
-    paymentModalState.reference ||
-    (paymentModalState.bookingId ? `Booking ${paymentModalState.bookingId}` : 'Travel Payment')
-  );
-
-  // Standard NPCI URI
-  const baseParams = `pa=${pa}&pn=${pn}&am=${am}&cu=${cu}&tn=${note}&mode=02&purpose=00`;
-
-  if (!scheme) {
-    return `upi://pay?${baseParams}`;
-  }
-
-  // Scheme specific mappings
-  switch (scheme.toLowerCase()) {
-    case 'gpay':
-      return `gpay://upi/pay?${baseParams}`;
-    case 'phonepe':
-      return `phonepe://upi/pay?${baseParams}`;
-    case 'paytm':
-      return `paytmmp://pay?${baseParams}`;
-    case 'bhim':
-      return `bhim://pay?${baseParams}`;
-    default:
-      return `upi://pay?${baseParams}`;
-  }
-}
-
-/**
- * Display the Pay Step (QR for desktop, intent buttons for mobile)
- */
-async function showPayScreen() {
-  paymentModalState.status = 'paying';
-
-  const stepAmount = document.getElementById('payStepAmount');
-  const stepPay = document.getElementById('payStepPay');
-  const stepStatus = document.getElementById('payStepStatus');
-
-  if (stepAmount) stepAmount.style.display = 'none';
-  if (stepPay) stepPay.style.display = 'block';
-  if (stepStatus) stepStatus.style.display = 'none';
-
-  const titleEl = document.getElementById('payModalHeaderTitle');
-  if (titleEl) titleEl.textContent = 'Make a Payment';
-
-  // Update summary fields
-  const amountFormatted = formatINR(paymentModalState.amount);
-  const amountDisplayEls = document.querySelectorAll('.pay-display-amount');
-  amountDisplayEls.forEach(el => {
-    el.textContent = amountFormatted;
-  });
-
-  const upiIdDisplay = document.getElementById('payDisplayUpiId');
-  if (upiIdDisplay) {
-    upiIdDisplay.textContent = paymentInfo.upiId;
-  }
-
-  const phoneDisplay = document.getElementById('payDisplayPhone');
-  if (phoneDisplay) {
-    phoneDisplay.textContent = paymentInfo.phone;
-  }
-
-  const noteDisplay = document.getElementById('payDisplayNote');
-  if (noteDisplay) {
-    noteDisplay.textContent = paymentModalState.reference || 'Direct Travel Payment';
-  }
-
-  // Build the universal UPI URI
-  const upiUri = buildUpiUri('');
-
-  // Render Dynamic QR code onto canvas
-  const canvas = document.getElementById('dynamicQrCanvas');
-  if (canvas) {
-    try {
-      await QRCode.toCanvas(canvas, upiUri, {
-        width: 230,
-        margin: 1,
-        color: {
-          dark: '#123B4A', // Brand Deep Petrol Blue
-          light: '#FFFFFF'
-        },
-        errorCorrectionLevel: 'M'
-      });
-    } catch (err) {
-      console.warn('QR Code generation error:', err);
-    }
-  }
-
-  // Update intent link attributes
-  const universalUpiBtn = document.getElementById('btnPayUniversalUpi');
-  if (universalUpiBtn) {
-    universalUpiBtn.setAttribute('href', upiUri);
-  }
-}
-
-/**
- * Launch UPI Intent on Mobile device
- */
-function launchUPIIntent(scheme = '') {
-  const upiUri = buildUpiUri(scheme);
-
-  // Mark status as initiated
-  paymentModalState.status = 'initiated';
-
-  // Attempt deep-link launch
-  window.location.href = upiUri;
-
-  // After a brief delay (giving native app time to open), show status confirmation screen
-  setTimeout(() => {
-    showInitiatedScreen();
-  }, 1200);
-}
-
-/**
  * Display Payment Initiated Screen
- * (Distinguishes initiated vs verified - no fake success)
+ * Honest status: No fake success message.
  */
-function showInitiatedScreen() {
+function showInitiatedScreen(amountVal) {
   paymentModalState.status = 'initiated';
 
-  const stepAmount = document.getElementById('payStepAmount');
-  const stepPay = document.getElementById('payStepPay');
-  const stepStatus = document.getElementById('payStepStatus');
+  const mainPanel = document.getElementById('payMainPanel');
+  const statusPanel = document.getElementById('payStatusPanel');
 
-  if (stepAmount) stepAmount.style.display = 'none';
-  if (stepPay) stepPay.style.display = 'none';
-  if (stepStatus) stepStatus.style.display = 'block';
+  if (mainPanel) mainPanel.style.display = 'none';
+  if (statusPanel) statusPanel.style.display = 'block';
 
-  const titleEl = document.getElementById('payModalHeaderTitle');
-  if (titleEl) titleEl.textContent = 'Payment Status';
-
-  // Populate status summary
-  const statusAmountEl = document.getElementById('statusDisplayAmount');
-  if (statusAmountEl) {
-    statusAmountEl.textContent = formatINR(paymentModalState.amount);
+  const amountDisplay = document.getElementById('statusAmountValue');
+  if (amountDisplay) {
+    amountDisplay.textContent = formatINR(amountVal);
   }
 
-  const statusRefEl = document.getElementById('statusDisplayRef');
-  if (statusRefEl) {
-    statusRefEl.textContent = paymentModalState.reference || (paymentModalState.bookingId ? `Booking #${paymentModalState.bookingId}` : 'Direct Payment');
-  }
-
-  // If there's an associated booking in localStorage, update its initiated payment note
+  // Store initiated payment in localStorage if linked to booking
   try {
     const lastBookingRaw = localStorage.getItem('last_booking');
     if (lastBookingRaw) {
       const bData = JSON.parse(lastBookingRaw);
       bData.paymentInitiated = {
-        amount: paymentModalState.amount,
+        amount: amountVal,
         timestamp: new Date().toISOString(),
-        upiId: paymentInfo.upiId,
+        merchantUpi: paymentInfo.upiId,
         status: 'initiated'
       };
       localStorage.setItem('last_booking', JSON.stringify(bData));
@@ -538,12 +503,10 @@ function showInitiatedScreen() {
 }
 
 /**
- * WhatsApp Notification with Payment Details & UTR
+ * WhatsApp 1-Click Payment Confirmation (Zero form inputs)
  */
 function handleWhatsAppNotification() {
-  const utrInput = document.getElementById('paymentUtrInput');
-  const utrValue = utrInput ? utrInput.value.trim() : '';
-
+  const amountStr = formatINR(paymentModalState.amount);
   const dateStr = new Date().toLocaleString('en-IN', {
     dateStyle: 'medium',
     timeStyle: 'short'
@@ -551,16 +514,14 @@ function handleWhatsAppNotification() {
 
   const text = encodeURIComponent(
     `*UPI Payment Notification - ${paymentInfo.merchantName}*\n\n` +
-    `• *Status:* Payment Initiated by Customer\n` +
-    `• *Amount:* ${formatINR(paymentModalState.amount)}\n` +
+    `• *Status:* Payment Initiated via UPI\n` +
+    `• *Amount:* ${amountStr}\n` +
     (paymentModalState.bookingId ? `• *Booking ID:* ${paymentModalState.bookingId}\n` : '') +
-    (paymentModalState.reference ? `• *Reference:* ${paymentModalState.reference}\n` : '') +
-    (utrValue ? `• *UPI Ref / UTR:* ${utrValue}\n` : '• *UPI Ref:* Pending receipt verification\n') +
-    `• *Recipient UPI:* ${paymentInfo.upiId}\n` +
-    `• *Timestamp:* ${dateStr}\n\n` +
-    `Please verify the bank credit and confirm booking allocation.`
+    (paymentModalState.reference ? `• *Note:* ${paymentModalState.reference}\n` : '') +
+    `• *Paid to UPI:* ${paymentInfo.upiId}\n` +
+    `• *Time:* ${dateStr}\n\n` +
+    `Please verify bank credit and confirm booking allocation.`
   );
 
-  // Open WhatsApp to merchant phone
   window.open(`https://wa.me/${companyInfo.whatsappRaw}?text=${text}`, '_blank');
 }

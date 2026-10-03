@@ -6443,6 +6443,141 @@ html.dark .contact-form-panel .form-control:focus {
   text-decoration: underline;
 }
 
+/* Dynamic Single-Screen Pay Button */
+.btn-pay-dynamic {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #123B4A 0%, #2A7F7F 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-btn);
+  box-shadow: 0 4px 14px rgba(18, 59, 74, 0.25);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-pay-dynamic:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0D2C38 0%, #1F6363 100%);
+  box-shadow: 0 6px 20px rgba(18, 59, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-pay-dynamic:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Divider with "or" */
+.pay-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0 16px;
+  position: relative;
+}
+
+.pay-divider::before,
+.pay-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pay-divider span {
+  padding: 0 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  color: var(--color-muted);
+  background: transparent;
+}
+
+/* Pay QR Section */
+.pay-qr-section {
+  text-align: center;
+  background: var(--color-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 16px 14px 14px;
+  margin-bottom: 16px;
+}
+
+.pay-qr-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.pay-qr-subtitle {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+
+.pay-qr-subtitle span {
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+/* Supported Apps Chips */
+.pay-supported-apps-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.app-chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Merchant Info Footer */
+.pay-merchant-footer {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 12px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.merchant-name-line {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.merchant-upi-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.merchant-secure-badge {
+  font-size: 0.74rem;
+  color: var(--color-dim);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+
+
 /* ==========================================================================
    DARK THEME OVERRIDES FOR PAYMENT
    ========================================================================== */
@@ -6644,3 +6779,53 @@ html.dark .btn-cancel-retry {
 html.dark .btn-cancel-retry:hover {
   color: #F87171;
 }
+
+html.dark .pay-divider::before,
+html.dark .pay-divider::after {
+  border-bottom-color: rgba(120, 180, 190, 0.18);
+}
+
+html.dark .pay-divider span {
+  color: #A9BBC0;
+}
+
+html.dark .pay-qr-section {
+  background: #0B191E;
+  border-color: rgba(120, 180, 190, 0.18);
+}
+
+html.dark .pay-qr-title {
+  color: #F1F7F8;
+}
+
+html.dark .pay-qr-subtitle {
+  color: #A9BBC0;
+}
+
+html.dark .pay-qr-subtitle span {
+  color: #38B2AC;
+}
+
+html.dark .app-chip {
+  background: #142A31;
+  border-color: rgba(120, 180, 190, 0.22);
+  color: #F1F7F8;
+}
+
+html.dark .pay-merchant-footer {
+  background: #081317;
+  border-color: rgba(120, 180, 190, 0.18);
+}
+
+html.dark .merchant-name-line {
+  color: #F1F7F8;
+}
+
+html.dark .merchant-upi-line {
+  color: #A9BBC0;
+}
+
+html.dark .merchant-secure-badge {
+  color: #7E969E;
+}
+

@@ -1554,7 +1554,7 @@ function initContactForm() {
       }
     } catch {
       if (alertEl) {
-        alertEl.textContent = 'Network error. Please call us at +91 89042 16594 or reach out via WhatsApp.';
+        alertEl.textContent = `Network error. Please call us at ${companyInfo.phoneDisplay} or reach out via WhatsApp.`;
         alertEl.className = 'form-alert error';
         alertEl.style.display = 'block';
       }
