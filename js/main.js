@@ -144,13 +144,17 @@ function initMobileDrawer() {
     overlay.classList.add('open');
     if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
   };
 
   const closeDrawer = () => {
     if (!drawer || !overlay) return;
     drawer.classList.remove('open');
     overlay.classList.remove('open');
-    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    if (toggleBtn) {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.focus();
+    }
     document.body.style.overflow = '';
   };
 
@@ -203,7 +207,7 @@ function initMobileDrawer() {
 }
 
 /* ==========================================================================
-   NAVIGATION SCROLL SPY
+   NAVIGATION SCROLL SPY (Zero-Layout-Thrashing Cached Implementation)
    ========================================================================== */
 function initScrollSpy() {
   const sections = [
@@ -222,43 +226,57 @@ function initScrollSpy() {
   const desktopNavItems = document.querySelectorAll('[data-nav]');
   const mobileNavItems = document.querySelectorAll('[data-mobile-nav]');
 
+  let lastNavKey = '';
+  let sectionOffsets = [];
+
+  function measureSections() {
+    sectionOffsets = sections.map(s => {
+      const el = document.getElementById(s.id);
+      return {
+        navKey: s.navKey,
+        top: el ? el.offsetTop : 0
+      };
+    });
+  }
+
+  measureSections();
+
+  let spyTicking = false;
   const updateActiveNav = () => {
     const scrollPos = window.scrollY + 120; // 120px offset below header
     let currentNavKey = 'home';
 
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const section = document.getElementById(sections[i].id);
-      if (section) {
-        const top = section.offsetTop;
-        if (scrollPos >= top) {
-          currentNavKey = sections[i].navKey;
-          break;
-        }
+    for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+      if (scrollPos >= sectionOffsets[i].top) {
+        currentNavKey = sectionOffsets[i].navKey;
+        break;
       }
     }
 
-    desktopNavItems.forEach(item => {
-      if (item.getAttribute('data-nav') === currentNavKey) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-
-    mobileNavItems.forEach(item => {
-      if (item.getAttribute('data-mobile-nav') === currentNavKey) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
+    if (currentNavKey !== lastNavKey) {
+      lastNavKey = currentNavKey;
+      desktopNavItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-nav') === currentNavKey);
+      });
+      mobileNavItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-mobile-nav') === currentNavKey);
+      });
+    }
+    spyTicking = false;
   };
 
   window.addEventListener('scroll', () => {
-    requestAnimationFrame(updateActiveNav);
+    if (!spyTicking) {
+      window.requestAnimationFrame(updateActiveNav);
+      spyTicking = true;
+    }
   }, { passive: true });
 
-  // Initial call
+  window.addEventListener('resize', () => {
+    measureSections();
+    updateActiveNav();
+  }, { passive: true });
+
   updateActiveNav();
 }
 
@@ -336,7 +354,7 @@ function renderDestinationsSection() {
     return `
       <div class="destination-card">
         <div class="destination-img-wrap">
-          <img class="destination-img" src="${image}" alt="${name} Tour Cab" loading="lazy" />
+          <img class="destination-img" src="${image}" alt="${name} Tour Cab" loading="lazy" decoding="async" />
           <div class="destination-overlay"></div>
           <span class="destination-badge-tag">${state}</span>
         </div>
@@ -375,7 +393,7 @@ function renderFleetSection() {
       <article class="fleet-card" data-vehicle-id="${car?.id ?? ''}">
         <!-- 1. Visual / Image Area -->
         <div class="fleet-img-wrap">
-          <img class="fleet-img" src="${image}" alt="${name} Cab Fleet" loading="lazy" />
+          <img class="fleet-img" src="${image}" alt="${name} Cab Fleet" loading="lazy" decoding="async" />
           <div class="fleet-img-gradient"></div>
           ${badge ? `<span class="fleet-badge-tag">${badge}</span>` : ''}
         </div>
@@ -452,7 +470,7 @@ function renderToursSection() {
       <article class="tour-card" data-tour-title="${title}">
         <!-- 1. IMAGE with subtle overlay & duration badge -->
         <div class="tour-img-wrap">
-          <img class="tour-img" src="${image}" alt="${title}" loading="lazy" />
+          <img class="tour-img" src="${image}" alt="${title}" loading="lazy" decoding="async" />
           <div class="tour-img-gradient"></div>
           ${duration ? `<span class="tour-duration-badge">${duration}</span>` : ''}
         </div>
@@ -1167,18 +1185,40 @@ function initMobileStickyBar() {
   const widget = document.getElementById('bookingWidget');
   if (!bar || !widget) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.innerWidth >= 768) {
-      bar.classList.remove('visible');
-      return;
-    }
-    const rect = widget.getBoundingClientRect();
-    if (rect.bottom < 80) {
-      bar.classList.add('visible');
-    } else {
-      bar.classList.remove('visible');
-    }
-  }, { passive: true });
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (window.innerWidth >= 768) {
+          bar.classList.remove('visible');
+          return;
+        }
+        // When booking widget has scrolled above viewport, show sticky bar
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          bar.classList.add('visible');
+        } else {
+          bar.classList.remove('visible');
+        }
+      });
+    }, { threshold: [0, 0.1] });
+
+    observer.observe(widget);
+  } else {
+    let barTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!barTicking) {
+        requestAnimationFrame(() => {
+          if (window.innerWidth < 768) {
+            const rect = widget.getBoundingClientRect();
+            bar.classList.toggle('visible', rect.bottom < 80);
+          } else {
+            bar.classList.remove('visible');
+          }
+          barTicking = false;
+        });
+        barTicking = true;
+      }
+    }, { passive: true });
+  }
 }
 
 function showFieldError(field, message) {
@@ -1690,14 +1730,34 @@ function initScrollProgress() {
     document.body.appendChild(bar);
   }
 
+  let progressTicking = false;
+  let cachedDocHeight = 0;
+
+  function updateDocHeight() {
+    cachedDocHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  }
+
+  updateDocHeight();
+
   const updateProgress = () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    const progress = cachedDocHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / cachedDocHeight) * 100)) : 0;
     bar.style.width = `${progress}%`;
+    progressTicking = false;
   };
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!progressTicking) {
+      window.requestAnimationFrame(updateProgress);
+      progressTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    updateDocHeight();
+    updateProgress();
+  }, { passive: true });
+
   updateProgress();
 }
 

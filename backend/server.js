@@ -23,15 +23,65 @@ initDatabase();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 2. Core Middleware
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim())
-  : '*';
+// 2. Reverse-Proxy Trust Configuration
+// Do not blindly trust all hops. When behind local Nginx/Caddy, trust 'loopback'.
+// If accessed directly (standalone), trust is disabled (false) to prevent X-Forwarded-For IP spoofing.
+const isProd = process.env.NODE_ENV === 'production';
+const trustProxyConfig = process.env.TRUST_PROXY || (isProd ? 'loopback' : false);
+app.set('trust proxy', trustProxyConfig);
+
+// 3. Strict CORS Middleware
+// Production requires explicit origin matching; wildcards are strictly disallowed in production.
+const configuredOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim().toLowerCase()).filter(Boolean)
+  : [];
+
+const devAllowedOrigins = [
+  'http://localhost:5000',
+  'http://127.0.0.1:5000',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+];
+
+if (isProd && configuredOrigins.length === 0) {
+  console.warn('⚠️  [SECURITY]: In production, ALLOWED_ORIGINS is not configured. Cross-origin browser requests will be blocked. Same-origin and direct API requests remain permitted.');
+}
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    // 1. Allow requests with no Origin header (same-origin static assets, curl, server-to-server, mobile apps)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    const normalizedOrigin = origin.toLowerCase().trim();
+
+    // 2. In Production: strictly match against configured production origins (never wildcard *)
+    if (isProd) {
+      if (configuredOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+      // Block unlisted origin without crashing the request stream
+      return callback(null, false);
+    }
+
+    // 3. In Development: allow local dev servers, configured origins, or explicit loopbacks
+    if (
+      configuredOrigins.includes('*') ||
+      configuredOrigins.includes(normalizedOrigin) ||
+      devAllowedOrigins.includes(normalizedOrigin) ||
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(normalizedOrigin)
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(null, false);
+  },
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));

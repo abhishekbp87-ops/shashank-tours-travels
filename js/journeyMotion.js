@@ -183,11 +183,12 @@ export function initJourneyMotion() {
   travelTimeline.to({}, { duration: 1.0 });
 
   // Soft luminous travel highlight ribbon flowing along the road
+  let highlightTween = null;
   if (highlightPath) {
     const pulseLen = totalLength * 0.32;
     highlightPath.style.strokeDasharray = `${pulseLen} ${totalLength}`;
     
-    gsapInstance.fromTo(
+    highlightTween = gsapInstance.fromTo(
       highlightPath,
       {
         strokeDashoffset: pulseLen,
@@ -254,6 +255,7 @@ export function initJourneyMotion() {
   // =========================================================================
   // 3. RESTRAINED MOUSE PARALLAX ACROSS DEPTH PLANES (Desktop Only)
   // Extremely gentle (1.5 - 4.5px), smooth damping via RAF, auto-centers on leave
+  // Cached rect prevents forced synchronous layout on mousemove
   // =========================================================================
   let mouseTargetX = 0;
   let mouseTargetY = 0;
@@ -261,6 +263,13 @@ export function initJourneyMotion() {
   let mouseCurrentY = 0;
   let mouseRafId = null;
   let isMouseOverHero = false;
+  let cachedStageRect = null;
+
+  function updateStageRect() {
+    if (scenicStage) {
+      cachedStageRect = scenicStage.getBoundingClientRect();
+    }
+  }
 
   function updateMouseParallax() {
     mouseCurrentX += (mouseTargetX - mouseCurrentX) * 0.06;
@@ -300,7 +309,9 @@ export function initJourneyMotion() {
 
   function handleMouseMove(e) {
     if (window.innerWidth < 992) return;
-    const rect = scenicStage.getBoundingClientRect();
+    if (!cachedStageRect) updateStageRect();
+    const rect = cachedStageRect;
+    if (!rect || rect.width <= 0) return;
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
@@ -315,6 +326,7 @@ export function initJourneyMotion() {
   function handleMouseEnter() {
     if (window.innerWidth < 992) return;
     isMouseOverHero = true;
+    updateStageRect();
     if (!mouseRafId) {
       mouseRafId = requestAnimationFrame(updateMouseParallax);
     }
@@ -331,12 +343,56 @@ export function initJourneyMotion() {
   heroSection.addEventListener('mouseleave', handleMouseLeave);
 
   // =========================================================================
-  // 4. RESIZE RECALCULATION & RESPONSIVE VIEWBOX SWITCHING
+  // 4. ANIMATION LIFECYCLE: PAUSE OFF-SCREEN & ON TAB HIDE (Battery & CPU Saver)
+  // =========================================================================
+  let isHeroVisible = true;
+
+  function pauseHeroAnimations() {
+    if (travelTimeline) travelTimeline.pause();
+    if (highlightTween) highlightTween.pause();
+    if (mouseRafId) {
+      cancelAnimationFrame(mouseRafId);
+      mouseRafId = null;
+    }
+  }
+
+  function resumeHeroAnimations() {
+    if (prefersReduced || document.hidden || !isHeroVisible) return;
+    if (travelTimeline) travelTimeline.play();
+    if (highlightTween) highlightTween.play();
+  }
+
+  if ('IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          resumeHeroAnimations();
+        } else {
+          pauseHeroAnimations();
+        }
+      });
+    }, { threshold: [0, 0.05] });
+
+    heroObserver.observe(heroSection);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseHeroAnimations();
+    } else {
+      resumeHeroAnimations();
+    }
+  });
+
+  // =========================================================================
+  // 5. RESIZE RECALCULATION & RESPONSIVE VIEWBOX SWITCHING
   // =========================================================================
   let resizeTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
+      updateStageRect();
       adjustResponsiveFraming();
       if (window.ScrollTrigger) {
         window.ScrollTrigger.refresh();
