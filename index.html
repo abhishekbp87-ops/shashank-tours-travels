@@ -1629,9 +1629,9 @@
       <div class="form-alert" id="reviewAlertBox" role="alert" style="display:none;"></div>
 
       <form class="modal-form" id="customerReviewForm" novalidate>
-        <!-- Honeypot anti-spam field -->
-        <div style="display:none;" aria-hidden="true">
-          <input type="text" name="botCheck" id="reviewBotCheck" tabindex="-1" autocomplete="off" />
+        <!-- Honeypot anti-spam field (Protected against mobile browser autofill) -->
+        <div style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; overflow: hidden;" aria-hidden="true">
+          <input type="text" name="website_url_hp" id="reviewBotCheck" tabindex="-1" autocomplete="new-password" aria-hidden="true" />
         </div>
 
         <!-- Rating (1-5 Stars) -->

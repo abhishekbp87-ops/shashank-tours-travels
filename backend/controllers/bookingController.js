@@ -26,9 +26,10 @@ export function createBooking(req, res) {
 
     // 1. Bot spam protection check
     if (botCheck) {
-      return res.status(200).json({
-        success: true,
-        message: 'Booking request received.'
+      console.warn('⚠️ [ANTI-SPAM]: Booking submission rejected by honeypot trigger.');
+      return res.status(400).json({
+        success: false,
+        message: 'Automated spam validation check failed. Please refresh and try again.'
       });
     }
 

@@ -127,14 +127,18 @@ export function initDatabase() {
   // 2. Ensure Default Admin User
   const adminCheck = db.prepare('SELECT id FROM ADMIN_USERS WHERE username = ?').get('admin');
   if (!adminCheck) {
-    const defaultPassword = process.env.ADMIN_PASSWORD || 'Shashank@2026';
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(defaultPassword, salt);
-    db.prepare(`
-      INSERT INTO ADMIN_USERS (username, passwordHash, name, role)
-      VALUES (?, ?, ?, ?)
-    `).run('admin', hash, 'Shashank Administrator', 'admin');
-    console.log('✓ Default Admin User created: "admin"');
+    const defaultPassword = process.env.ADMIN_PASSWORD;
+    if (!defaultPassword) {
+      console.warn('⚠️ [SECURITY]: ADMIN_PASSWORD environment variable is not set. Admin user creation skipped.');
+    } else {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(defaultPassword, salt);
+      db.prepare(`
+        INSERT INTO ADMIN_USERS (username, passwordHash, name, role)
+        VALUES (?, ?, ?, ?)
+      `).run('admin', hash, 'Shashank Administrator', 'admin');
+      console.log('✓ Default Admin User created from environment: "admin"');
+    }
   }
 
   // 3. Seed initial tours if empty

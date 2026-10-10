@@ -8,6 +8,7 @@ export function createReview(req, res) {
       rating,
       reviewText,
       review,
+      comment,
       tripType,
       service,
       destination,
@@ -18,15 +19,16 @@ export function createReview(req, res) {
 
     // Honeypot anti-spam check
     if (botCheck) {
-      return res.status(200).json({
-        success: true,
-        message: 'Thank you for your feedback. Your review has been submitted successfully.'
+      console.warn('⚠️ [ANTI-SPAM]: Review submission rejected by honeypot trigger.');
+      return res.status(400).json({
+        success: false,
+        message: 'Automated spam validation check failed. Please refresh and try again.'
       });
     }
 
     const cName = (customerName || name || '').trim();
     const cRating = parseInt(rating, 10);
-    const cText = (reviewText || review || '').trim();
+    const cText = (reviewText || review || comment || '').trim();
     const cService = (service || tripType || destination || vehicle || '').trim();
     const cEmail = (email || '').trim();
 
@@ -66,9 +68,12 @@ export function createReview(req, res) {
       cEmail || null
     );
 
+    const insertedId = Number(result.lastInsertRowid);
     return res.status(201).json({
       success: true,
-      reviewId: Number(result.lastInsertRowid),
+      id: insertedId,
+      reviewId: insertedId,
+      data: { id: insertedId },
       message: 'Thank you for your feedback! Your review has been submitted for moderation and will appear on the website once approved by our team.'
     });
   } catch (error) {

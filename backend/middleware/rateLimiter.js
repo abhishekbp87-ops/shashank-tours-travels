@@ -36,7 +36,10 @@ export function rateLimiter({ windowMs = 60000, maxRequests = 10, message = 'Too
 
     routeLimits.set(ip, record);
 
-    if (record.count > maxRequests) {
+    const isProd = process.env.NODE_ENV === 'production';
+    const effectiveMax = isProd ? maxRequests : Math.max(maxRequests, 100);
+
+    if (record.count > effectiveMax) {
       return res.status(429).json({
         success: false,
         message

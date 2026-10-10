@@ -1,0 +1,6 @@
+# Cloudflare Pages Redirects & Reverse Proxy Configuration
+# If you prefer not to use Cloudflare Pages Functions, you can proxy /api directly:
+# /api/*  https://YOUR-BACKEND-API-DOMAIN.com/api/:splat  200
+
+# Single Page Application (SPA) fallback if needed:
+# /*  /index.html  200

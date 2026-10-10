@@ -5,9 +5,10 @@ export function submitContact(req, res) {
     const { name, phone, email, message, botCheck } = req.body;
 
     if (botCheck) {
-      return res.status(200).json({
-        success: true,
-        message: 'Your message has been sent successfully.'
+      console.warn('⚠️ [ANTI-SPAM]: Contact submission rejected by honeypot trigger.');
+      return res.status(400).json({
+        success: false,
+        message: 'Automated spam validation check failed. Please refresh and try again.'
       });
     }
 
@@ -33,9 +34,12 @@ export function submitContact(req, res) {
 
     const result = insert.run(cName, cPhone, cEmail || null, cMessage);
 
+    const insertedId = Number(result.lastInsertRowid);
     return res.status(201).json({
       success: true,
-      messageId: Number(result.lastInsertRowid),
+      id: insertedId,
+      messageId: insertedId,
+      data: { id: insertedId },
       message: 'Thank you for reaching out to Shashank Tours & Travels. Our travel coordinator will contact you shortly.'
     });
   } catch (error) {
